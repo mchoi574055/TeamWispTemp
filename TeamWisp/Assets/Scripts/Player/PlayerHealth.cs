@@ -24,8 +24,14 @@ public class PlayerHealth : MonoBehaviour
         } else if (health <= 0f){
             health = 0f;
             Debug.Log("Player Dead");
-            GameObject.FindWithTag("Player").GetComponent<SpriteRenderer>().color = new Color(0,0,0,1);
-            GameObject.FindWithTag("Player").GetComponent<PlayerMovement>().enabled = false;
+
+            // Player Dead
+            GameObject player = GameObject.FindWithTag("Player");
+
+            player.GetComponent<SpriteRenderer>().color = new Color(0,0,0,1);
+            player.GetComponent<Rigidbody2D>().velocity = new Vector2(0,0);
+
+            player.GetComponent<PlayerMovement>().enabled = false;
         }
     }
 
