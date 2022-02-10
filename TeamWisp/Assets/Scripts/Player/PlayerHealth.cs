@@ -31,7 +31,7 @@ public class PlayerHealth : MonoBehaviour
             player.GetComponent<SpriteRenderer>().color = new Color(0,0,0,1);
             player.GetComponent<Rigidbody2D>().velocity = new Vector2(0,0);
 
-            player.GetComponent<PlayerMovement>().enabled = false;
+            //player.GetComponent<PlayerMovement>().enabled = false;
         }
     }
 
