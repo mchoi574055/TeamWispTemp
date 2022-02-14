@@ -4,14 +4,6 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    public int level = 3;
-    public int health = 40;
-
-    public void OnLevelUp()
-    {
-        Debug.Log("P key was pressed");
-        level += 1;
-    }
     public void OnSave()
     {
             Debug.Log("s key pressed");
@@ -23,8 +15,13 @@ public class Player : MonoBehaviour
     {
             Debug.Log("l key pressed");
             LoadPlayer();
-
     }
+
+    public void OnTestUseAbility()
+    {
+        
+    }
+    
     public void SavePlayer()
     {
         SaveSystem.SavePlayer(this);
@@ -33,8 +30,7 @@ public class Player : MonoBehaviour
     public void LoadPlayer()
     {
         PlayerData data = SaveSystem.LoadPlayer();
-
-        level = data.level;
+        
         // health = data.health
 
         Vector3 position;
