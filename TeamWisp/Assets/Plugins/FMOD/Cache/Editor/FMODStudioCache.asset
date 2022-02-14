@@ -155,8 +155,10 @@ MonoBehaviour:
   Path: ../fmod-proj/Build/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 637803589112122487
-  FileSizes: []
+  lastModified: 637803889026824767
+  FileSizes:
+  - Name: Desktop
+    Value: 1068896
   Exists: 1
 --- !u!114 &-6337643419285763269
 MonoBehaviour:
@@ -317,6 +319,33 @@ MonoBehaviour:
   IsOneShot: 0
   Parameters:
   - {fileID: -8544938616006960560}
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
+--- !u!114 &-2917767846091045682
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/sword_attack
+  m_EditorClassIdentifier: 
+  Path: event:/sword_attack
+  Guid:
+    Data1: -1927807006
+    Data2: 1306849239
+    Data3: -2078457467
+    Data4: 224942583
+  Banks:
+  - {fileID: -6742792605319969795}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
   MinDistance: 1
   MaxDistance: 20
   Length: 0
@@ -481,12 +510,13 @@ MonoBehaviour:
   - {fileID: -6742792605319969795}
   EditorEvents:
   - {fileID: 2360591527751422318}
+  - {fileID: -2917767846091045682}
   EditorParameters: []
   MasterBanks:
   - {fileID: -6742792605319969795}
   StringsBanks:
   - {fileID: 595589015563345626}
-  cacheTime: 637803589112142439
+  cacheTime: 637803889026840050
   cacheVersion: 10
 --- !u!114 &72030945825028577
 MonoBehaviour:
@@ -550,10 +580,10 @@ MonoBehaviour:
   Path: ../fmod-proj/Build/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 637803589112142439
+  lastModified: 637803889026840050
   FileSizes:
-  - Name: 
-    Value: 762
+  - Name: Desktop
+    Value: 816
   Exists: 1
 --- !u!114 &1692920087138993971
 MonoBehaviour:
