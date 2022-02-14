@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<< HEAD:TeamWisp/Assets/Prefabs/HealthBar.prefab.meta
 guid: ab28abac9008845c4b5f6f346c2ec920
+=======
+guid: f686f1d88dcba644ebf69596de91a8b4
+>>>>>>> 60ac026d14c040fcf0026ab74baee1c981e1d96a:TeamWisp/Assets/Prefabs/MikeTest.prefab.meta
 PrefabImporter:
   externalObjects: {}
   userData: 
