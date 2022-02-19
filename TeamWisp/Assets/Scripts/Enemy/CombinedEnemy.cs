@@ -2,22 +2,27 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SpecialEnemy : MonoBehaviour
+public class CombinedEnemy : MonoBehaviour
 {
+    // patrol
+    public Transform[] path;
+    public int currentPoint;
+    public Transform currentGoal;
+    public float margin = 0.2f;
     public float speed;
+
+    // chase
     public float rotateSpeed;
     public bool chase = false;
     private Vector3 startingPoint;
     private GameObject hero;
     public float chaseRadius = 5.0f;
     public float attackRadius = 2.5f;
-    private float _angle;
-    // Start is called before the first frame update
+
     void Start()
     {
         startingPoint = gameObject.transform.position;
         hero = GameObject.FindGameObjectWithTag("Hero");
-        _angle = rotateSpeed * Time.deltaTime;
     }
 
     // Update is called once per frame
@@ -35,8 +40,37 @@ public class SpecialEnemy : MonoBehaviour
             Encircle();
         }
         else
-            ReturnStartPoint();
-        //Flip();
+            patrol();
+
+    }
+
+    private void patrol()
+    {
+        if (Vector3.Distance(transform.position, currentGoal.position) <= margin)
+        {
+            changeGoal();
+        }
+        else
+        {
+            Vector3 temp = Vector3.MoveTowards(transform.position,
+                                                currentGoal.position,
+                                                speed * Time.deltaTime);
+
+            transform.position = temp;
+        }
+    }
+    private void changeGoal()
+    {
+        if (currentPoint == path.Length - 1)
+        {
+            currentPoint = 0;
+            currentGoal = path[0];
+        }
+        else
+        {
+            currentPoint++;
+            currentGoal = path[currentPoint];
+        }
     }
 
     private void Chase()
@@ -47,8 +81,6 @@ public class SpecialEnemy : MonoBehaviour
     private void Encircle()
     {
 
-        //var offset = new Vector3(Mathf.Sin(_angle), Mathf.Cos(_angle), 0) * attackRadius;
-        //transform.position = player.transform.position + offset;
         transform.RotateAround(hero.transform.position, Vector3.forward, rotateSpeed * Time.deltaTime);
         transform.Rotate(0.0f, 0.0f, -1 * rotateSpeed * Time.deltaTime);
     }
@@ -57,5 +89,4 @@ public class SpecialEnemy : MonoBehaviour
     {
         transform.position = Vector2.MoveTowards(transform.position, startingPoint, speed * Time.deltaTime);
     }
-
 }
