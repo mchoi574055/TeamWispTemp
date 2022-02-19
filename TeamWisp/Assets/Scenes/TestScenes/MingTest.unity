@@ -271,7 +271,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Actions: {fileID: -944628639613478452, guid: 37041ac2ec57bbe47b830cba7d306048, type: 3}
+  m_Actions: {fileID: -944628639613478452, guid: 09a7daffc30d9f747a6623bd4a9b6931, type: 3}
   m_NotificationBehavior: 2
   m_UIInputModule: {fileID: 0}
   m_DeviceLostEvent:
@@ -285,24 +285,76 @@ MonoBehaviour:
       m_Calls: []
   m_ActionEvents:
   - m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 2127441278}
-        m_TargetAssemblyTypeName: DownedUI, Assembly-CSharp
-        m_MethodName: addProgress
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-    m_ActionId: f05501fd-0af6-4dab-bdf3-b0802295f8cd
-    m_ActionName: New action map/New action
+      m_Calls: []
+    m_ActionId: 8412ab19-f936-4755-8429-f00a6181ebee
+    m_ActionName: Player/Move[/Keyboard/w,/Keyboard/upArrow,/Keyboard/s,/Keyboard/downArrow,/Keyboard/a,/Keyboard/leftArrow,/Keyboard/d,/Keyboard/rightArrow,/Keyboard/f]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: e3054f46-9db1-493e-9ad9-835938883e9f
+    m_ActionName: Player/Look[/Mouse/delta]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 76e1659b-928c-4be8-ab4d-d2a1e9675f93
+    m_ActionName: Player/TestUseAbility[/Mouse/leftButton]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 3b17aa96-c89d-40a8-b992-073566216ad0
+    m_ActionName: Player/Revive[/Keyboard/f]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: ff06ba6c-af4f-4bdf-85ae-b4ae28f95f54
+    m_ActionName: UI/Navigate[/Keyboard/w,/Keyboard/upArrow,/Keyboard/s,/Keyboard/downArrow,/Keyboard/a,/Keyboard/leftArrow,/Keyboard/d,/Keyboard/rightArrow]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: dae5f5a5-9d4f-4086-8f72-b85ec9b302c0
+    m_ActionName: UI/Submit[/Keyboard/enter]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 9b6d150d-264f-4d6d-9e78-a11546d189d6
+    m_ActionName: UI/Cancel[/Keyboard/escape]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: eab1772a-36b4-488d-a699-dd38f2e876a8
+    m_ActionName: UI/Point[/Mouse/position]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 1e010297-5c89-4953-a82d-87575519672b
+    m_ActionName: UI/Click[/Mouse/leftButton]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 379720af-0337-4150-ba54-f56737ca11e1
+    m_ActionName: UI/ScrollWheel[/Mouse/scroll]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 461bf1b6-c44b-445c-8e4c-7f0a1ecf1b2d
+    m_ActionName: UI/MiddleClick[/Mouse/middleButton]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 7fcc9af9-3617-47d4-a619-4d32943e1697
+    m_ActionName: UI/RightClick[/Mouse/rightButton]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 4076bd24-51c2-4356-8dbd-30982d4aa9c9
+    m_ActionName: UI/TrackedDevicePosition
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 34150368-7db3-4429-b467-eb170bcb479e
+    m_ActionName: UI/TrackedDeviceOrientation
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: ebe8de56-2997-4029-8d02-b89c40dd301f
+    m_ActionName: TestPlayer/Save[/Keyboard/s]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 2e283e26-12bf-4174-a4dc-d8e4a294a2fb
+    m_ActionName: TestPlayer/Load[/Keyboard/l]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: a264233d-a890-49d9-9f2f-42cef7ac3e2a
+    m_ActionName: TestPlayer/LevelUp[/Keyboard/p]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: Keyboard&Mouse
-  m_DefaultActionMap: Interact
+  m_DefaultActionMap: Player
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
 --- !u!114 &535903431
