@@ -4,11 +4,6 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes:
-  - enabled: 1
-    path: Assets/Scenes/TestScenes/JeffreyTest.unity
-    guid: 8113868ad38424aaa98bd27623d18da5
-  - enabled: 1
-    path: Assets/Scenes/TestScenes/JeffKTest2.unity
-    guid: 95c3fa582ccf242dfb28649db5cf3588
-  m_configObjects: {}
+  m_Scenes: []
+  m_configObjects:
+    com.unity.input.settings: {fileID: 11400000, guid: 2ce8208d49c40f6419faac2ee933da05, type: 2}
