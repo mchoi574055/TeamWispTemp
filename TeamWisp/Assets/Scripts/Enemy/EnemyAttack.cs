@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Hero;
 using UnityEngine;
 
 public class EnemyAttack : MonoBehaviour
@@ -14,9 +15,9 @@ public class EnemyAttack : MonoBehaviour
     private float canAttack = 1f;
 
     private void OnCollisionStay2D(Collision2D other) {
-        if(other.gameObject.tag == "Player"){
+        if(other.gameObject.CompareTag("Hero")){
             if(canAttack >= attackSpeed){
-                other.gameObject.GetComponent<PlayerHealth>().UpdateHealth(-attackDamage);
+                other.gameObject.GetComponent<HeroHealth>().UpdateHealth(-attackDamage);
                 canAttack = 0f;
 
             }

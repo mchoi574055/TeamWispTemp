@@ -1,21 +1,22 @@
 using UnityEngine;
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
+using Hero;
 
 public static class SaveSystem 
 {
-    public static void SavePlayer (Player player)
+    public static void SaveHero (HeroController hero)
     {
         BinaryFormatter formatter = new BinaryFormatter();
         string path = Application.persistentDataPath + "/player.wisp";
         FileStream stream = new FileStream(path, FileMode.Create);
 
-        PlayerData data = new PlayerData(player);
+        HeroData data = new HeroData(hero);
 
         formatter.Serialize(stream, data);
         stream.Close();
     }
-    public static PlayerData LoadPlayer()
+    public static HeroData LoadHero()
     {
         string path = Application.persistentDataPath + "/player.wisp";
         if(File.Exists(path))
@@ -23,7 +24,7 @@ public static class SaveSystem
             BinaryFormatter formatter = new BinaryFormatter();
             FileStream stream = new FileStream(path, FileMode.Open);
 
-            PlayerData data = formatter.Deserialize(stream) as PlayerData;
+            HeroData data = formatter.Deserialize(stream) as HeroData;
             stream.Close();
 
             return data;

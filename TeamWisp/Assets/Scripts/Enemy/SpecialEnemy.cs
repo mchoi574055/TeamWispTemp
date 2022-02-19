@@ -8,7 +8,7 @@ public class SpecialEnemy : MonoBehaviour
     public float rotateSpeed;
     public bool chase = false;
     private Vector3 startingPoint;
-    private GameObject player;
+    private GameObject hero;
     public float chaseRadius = 5.0f;
     public float attackRadius = 2.5f;
     private float _angle;
@@ -16,16 +16,16 @@ public class SpecialEnemy : MonoBehaviour
     void Start()
     {
         startingPoint = gameObject.transform.position;
-        player = GameObject.FindGameObjectWithTag("Player");
+        hero = GameObject.FindGameObjectWithTag("Hero");
         _angle = rotateSpeed * Time.deltaTime;
     }
 
     // Update is called once per frame
     void FixedUpdate()
     {
-        if (player == null)
+        if (hero == null)
             return;
-        float dist = Vector3.Distance(transform.position, player.transform.position);
+        float dist = Vector3.Distance(transform.position, hero.transform.position);
         if (dist <= chaseRadius && dist >= attackRadius)
         {
             Chase();
@@ -41,7 +41,7 @@ public class SpecialEnemy : MonoBehaviour
 
     private void Chase()
     {
-        transform.position = Vector2.MoveTowards(transform.position, player.transform.position, speed * Time.deltaTime);
+        transform.position = Vector2.MoveTowards(transform.position, hero.transform.position, speed * Time.deltaTime);
     }
 
     private void Encircle()
@@ -49,7 +49,7 @@ public class SpecialEnemy : MonoBehaviour
 
         //var offset = new Vector3(Mathf.Sin(_angle), Mathf.Cos(_angle), 0) * attackRadius;
         //transform.position = player.transform.position + offset;
-        transform.RotateAround(player.transform.position, Vector3.forward, rotateSpeed * Time.deltaTime);
+        transform.RotateAround(hero.transform.position, Vector3.forward, rotateSpeed * Time.deltaTime);
         transform.Rotate(0.0f, 0.0f, -1 * rotateSpeed * Time.deltaTime);
     }
 
