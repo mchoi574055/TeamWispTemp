@@ -560,5 +560,5 @@ MonoBehaviour:
   currentPoint: 0
   currentGoal: {fileID: 0}
   margin: 0.2
-  speed: 0
+  speed: 1
   direction: {x: 0, y: 0, z: 0}
