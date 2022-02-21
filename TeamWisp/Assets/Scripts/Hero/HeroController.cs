@@ -2,8 +2,17 @@ using UnityEngine;
 
 namespace Hero
 {
+    
     public class HeroController : MonoBehaviour
     {
+        private EnemyBasic enemyBasic;
+        public void Start()
+        {
+            enemyBasic = gameObject.AddComponent<EnemyBasic>();
+            enemyBasic.init();
+            enemyBasic.enabled = false;
+        }
+        
         public int level = 3;
         public int health = 40;
 
