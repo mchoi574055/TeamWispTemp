@@ -23,6 +23,7 @@ public static class Settings
         set
         {
             PlayerPrefs.SetFloat("VOLUME", value);
+            PlayerPrefs.Save();
             onVolumeChanged.Invoke(value);
         }
     }
