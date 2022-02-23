@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Movement
+namespace Behaviours
 {
     public class FollowPath : MonoBehaviour
     {
@@ -21,6 +21,7 @@ namespace Movement
         {
             mPath = path;
             mSpeed = speed;
+            enabled = false;
         }
         
         // Lifecycle
@@ -39,7 +40,7 @@ namespace Movement
             {
                 mDirection = (mCurrentGoal.position - transform.position).normalized;
                 
-                transform.position = Vector3.MoveTowards(transform.position,
+                transform.position = Vector2.MoveTowards(transform.position,
                                     mCurrentGoal.position,
                             mSpeed * Time.deltaTime);
             }

@@ -1,4 +1,3 @@
-using Movement;
 using UnityEngine;
 
 namespace Hero
@@ -9,12 +8,11 @@ namespace Hero
         [SerializeField] private Transform[] path;
         [SerializeField] private float walkSpeed;
         
-        private FollowPath followPath;
+        private Behaviours.FollowPath followPath;
         public void Start()
         {
-            followPath = gameObject.AddComponent<FollowPath>();
+            followPath = gameObject.AddComponent<Behaviours.FollowPath>();
             followPath.Init(path, walkSpeed);
-            followPath.enabled = false;
         }
         
         public int level = 3;

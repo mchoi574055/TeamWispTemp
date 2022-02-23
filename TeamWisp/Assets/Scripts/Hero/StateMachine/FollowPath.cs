@@ -4,14 +4,14 @@ namespace Hero.StateMachine
 {
     public class FollowPath : StateMachineBehaviour
     {
-        private Movement.FollowPath followPath;
+        private Behaviours.FollowPath followPath;
         private static readonly int velocityX = Animator.StringToHash("VelocityX");
         private static readonly int velocityY = Animator.StringToHash("VelocityY");
 
         // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
         public override void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
         {
-            followPath = animator.GetComponent<Movement.FollowPath>();
+            followPath = animator.GetComponent<Behaviours.FollowPath>();
             followPath.enabled = true;
         }
 

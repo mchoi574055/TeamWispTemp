@@ -163,9 +163,10 @@ GameObject:
   m_Component:
   - component: {fileID: 880080045}
   - component: {fileID: 880080044}
+  - component: {fileID: 880080046}
   m_Layer: 0
   m_Name: Square
-  m_TagString: Player
+  m_TagString: Hero
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -235,6 +236,22 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &880080046
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 880080043}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2f82dbf62e4816042b558b7d90272c24, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  path: []
+  walkSpeed: 0
+  level: 3
+  health: 40
 --- !u!1 &954232896
 GameObject:
   m_ObjectHideFlags: 0
@@ -406,6 +423,12 @@ MonoBehaviour:
   path:
   - {fileID: 515602029}
   - {fileID: 1094118730}
+  walkSpeed: 1
+  chaseRadius: 2
+  timePerCharge: 3
+  chargeSpeed: 5
+  chargeDistance: 4
+  chargeAnticipationTime: 1
 --- !u!212 &1024853688
 SpriteRenderer:
   m_ObjectHideFlags: 0
