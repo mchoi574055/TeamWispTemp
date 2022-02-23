@@ -426,7 +426,7 @@ MonoBehaviour:
   walkSpeed: 1
   chaseRadius: 2
   timePerCharge: 3
-  chargeSpeed: 5
+  chargeSpeed: 10
   chargeDistance: 4
   chargeAnticipationTime: 1
 --- !u!212 &1024853688
