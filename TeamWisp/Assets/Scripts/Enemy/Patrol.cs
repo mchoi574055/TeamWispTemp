@@ -21,7 +21,7 @@ public class Patrol : StateMachineBehaviour
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        path = animator.GetComponent<EnemyInfo>().getPaths();
+        path = animator.GetComponent<EnemyController>().getPaths();
         currentGoal = path[0];
         currentPoint = 0;
         player = GameObject.FindGameObjectWithTag("Player");
@@ -33,7 +33,7 @@ public class Patrol : StateMachineBehaviour
         if (player == null)
             return;
         float dist = Vector3.Distance(animator.transform.position, player.transform.position);
-
+        
         // player enters radius, so chase
         if (dist <= chaseRadius)
         {
@@ -75,16 +75,4 @@ public class Patrol : StateMachineBehaviour
     {
         animator.ResetTrigger("Chase");
     }
-
-    // OnStateMove is called right after Animator.OnAnimatorMove()
-    //override public void OnStateMove(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
-    //{
-    //    // Implement code that processes and affects root motion
-    //}
-
-    // OnStateIK is called right after Animator.OnAnimatorIK()
-    //override public void OnStateIK(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
-    //{
-    //    // Implement code that sets up animation IK (inverse kinematics)
-    //}
 }
