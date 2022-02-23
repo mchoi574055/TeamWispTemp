@@ -1,9 +1,22 @@
+using Movement;
 using UnityEngine;
 
 namespace Hero
 {
     public class HeroController : MonoBehaviour
     {
+        
+        [SerializeField] private Transform[] path;
+        [SerializeField] private float walkSpeed;
+        
+        private FollowPath followPath;
+        public void Start()
+        {
+            followPath = gameObject.AddComponent<FollowPath>();
+            followPath.Init(path, walkSpeed);
+            followPath.enabled = false;
+        }
+        
         public int level = 3;
         public int health = 40;
 

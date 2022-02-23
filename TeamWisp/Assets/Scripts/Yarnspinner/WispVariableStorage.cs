@@ -1,3 +1,4 @@
+/*
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -43,7 +44,7 @@ public class WispVariableStorage : VariableStorageBehaviour
         {
 
         }
-        */
+        #1#
         // if a result was found, convert it to type T and assign it
         results = db.Query<object>(query);
         if (results?.Count > 0)
@@ -135,3 +136,4 @@ public class WispVariableStorage : VariableStorageBehaviour
         
     }
 }
+*/
