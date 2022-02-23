@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="AudioFile" id="{9dea60f4-f2f3-42da-8a3d-dbf6cc2ba247}">
+		<property name="assetPath">
+			<value>110-pokemon center.mp3</value>
+		</property>
+		<property name="isStreaming">
+			<value>true</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>44.0999985</value>
+		</property>
+		<property name="channelCount">
+			<value>2</value>
+		</property>
+		<property name="length">
+			<value>73.874285714285719</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{da3579ed-6521-4893-8726-42398c238949}</destination>
+		</relationship>
+	</object>
+</objects>
