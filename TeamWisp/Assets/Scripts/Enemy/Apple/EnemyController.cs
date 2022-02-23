@@ -1,17 +1,20 @@
 using System.Collections;
 using System.Collections.Generic;
+using Movement;
 using UnityEngine;
 
 public class EnemyController : MonoBehaviour
 {
-    
-    
-    [SerializeField] private Transform[] path;
+    // Fields
+    [SerializeField] private Transform[] mPath;
+    // Member Variables
+    private FollowPath mFollowPath;
     
     // Start is called before the first frame update
     void Start()
     {
-        
+        mFollowPath = gameObject.AddComponent<FollowPath>();
+        mFollowPath.Init(mPath);
     }
 
     // Update is called once per frame
@@ -22,6 +25,6 @@ public class EnemyController : MonoBehaviour
 
     public Transform[] getPaths()
     {
-        return path;
+        return mPath;
     }
 }
