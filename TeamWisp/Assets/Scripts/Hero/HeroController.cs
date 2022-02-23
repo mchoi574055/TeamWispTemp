@@ -1,16 +1,20 @@
+using Movement;
 using UnityEngine;
 
 namespace Hero
 {
-    
     public class HeroController : MonoBehaviour
     {
-        private EnemyBasic enemyBasic;
+        
+        [SerializeField] private Transform[] path;
+        [SerializeField] private float walkSpeed;
+        
+        private FollowPath followPath;
         public void Start()
         {
-            enemyBasic = gameObject.AddComponent<EnemyBasic>();
-            enemyBasic.init();
-            enemyBasic.enabled = false;
+            followPath = gameObject.AddComponent<FollowPath>();
+            followPath.Init(path, walkSpeed);
+            followPath.enabled = false;
         }
         
         public int level = 3;
