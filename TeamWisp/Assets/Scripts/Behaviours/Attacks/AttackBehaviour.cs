@@ -13,6 +13,8 @@ namespace Behaviours.Attacks
             Recovery
         }
         
+        private bool initialed = false;
+        
         // Fields
         protected float mAnticipationDuration;
         protected float mActionDuration;
@@ -79,17 +81,41 @@ namespace Behaviours.Attacks
             }
         }
         
-        // Events
+        // Custom Lifecycle
 
-        protected abstract void OnAnticipationComplete();
+        protected virtual void OnStart()
+        {
+            
+        }
+
+        protected virtual void Anticipation()
+        {
+            
+        }
+
+        protected virtual void OnAnticipationComplete()
+        {
+            
+        }
+
+        protected virtual void Action()
+        {
+            
+        }
+
+        protected virtual void OnActionComplete()
+        {
+            
+        }
         
-        protected abstract void OnActionComplete();
-        
-        // Methods
-        protected abstract void Anticipation();
-        
-        protected abstract void Action();
-        
-        protected abstract void Recovery();
+        protected virtual void Recovery()
+        {
+            
+        }
+
+        protected virtual void OnComplete()
+        {
+            
+        }
     }
 }

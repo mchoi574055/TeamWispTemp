@@ -10,7 +10,10 @@ namespace Enemy.Apple.StateMachine
     
         private Behaviours.FollowPath mFollowPath;
         private GameObject hero;
-    
+        
+        private static readonly int velocityX = Animator.StringToHash("VelocityX");
+        private static readonly int velocityY = Animator.StringToHash("VelocityY");
+
         // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
         public override void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
         {
@@ -25,6 +28,9 @@ namespace Enemy.Apple.StateMachine
         // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
         public override void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
         {
+            animator.SetFloat(velocityX, mFollowPath.mDirection.x);
+            animator.SetFloat(velocityY, mFollowPath.mDirection.y);
+            
             float dist = Vector3.Distance(animator.transform.position, hero.transform.position);
         
             // player enters radius, so chase
