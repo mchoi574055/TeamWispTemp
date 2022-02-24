@@ -8,9 +8,9 @@ namespace Enemy.Apple.StateMachine
         
         private const string ChargeState = "Charge";
         private const string PatrolState = "Patrol";
-
+        
         private Behaviours.Chase mChase;
-
+        
         private float chargeCooldownTime;
 
         // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state

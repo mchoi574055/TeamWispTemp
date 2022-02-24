@@ -1,38 +1,61 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class Projectile : MonoBehaviour
+namespace Enemy
 {
-
-    [SerializeField] private float speed = 10f;
-    private Transform player;
-    private Vector2 target;
-
-    // Start is called before the first frame update
-    void Start()
+    public class Projectile : MonoBehaviour
     {
-        player = GameObject.FindGameObjectWithTag("Player").transform;
-        target = new Vector2(player.position.x, player.position.y);
-    }
+        private bool initialized = false;
+        
+        // Field
+        private float mSpeed;
+        private float mDistance;
+        
+        // Member Variables
+        // TODO Add heroController
+        private GameObject hero;
+        private Vector3 mDirection;
 
-    // Update is called once per frame
-    void Update()
-    {
-        transform.position = Vector2.MoveTowards(transform.position, target, speed * Time.deltaTime);
+        private Vector3 mStartPosition;
 
-        if(transform.position.x == target.x && transform.position.y == target.y){
-            DestroyProjectile();
+        public void Init(float speed, float distance)
+        {
+            mSpeed = speed;
+            mDistance = distance;
+
+            initialized = true;
         }
-    }
-
-    void OntriggerEnter2D(Collider2D other){
-        if(other.CompareTag("Player")){
-            DestroyProjectile();
+    
+        // Lifecycle
+        void Start()
+        {
+            hero = GameObject.FindGameObjectWithTag("Hero");
+            mDirection = (hero.transform.position - transform.position).normalized;
+            mStartPosition = transform.position;
         }
-    }
+        
+        void Update()
+        {
+            if (initialized)
+            {
+                transform.position += (mDirection * mSpeed);
 
-    void DestroyProjectile(){
-        Destroy(gameObject);
+                if (Vector3.Distance(transform.position, mStartPosition) >= mDistance)
+                {
+                    DestroyProjectile();
+                }
+            }
+        }
+
+        // Events
+        void OntriggerEnter2D(Collider2D other){
+            if(other.CompareTag("Hero")){
+                DestroyProjectile();
+            }
+        }
+
+        // Methods
+        void DestroyProjectile(){
+            Destroy(gameObject);
+        }
     }
 }

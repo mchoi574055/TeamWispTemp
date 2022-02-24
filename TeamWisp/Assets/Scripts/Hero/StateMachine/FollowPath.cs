@@ -28,7 +28,7 @@ namespace Hero.StateMachine
             animator.SetFloat(velocityX, followPath.GetDirection().x);
             animator.SetFloat(velocityY, followPath.GetDirection().y);
             
-            float dist = Vector3.Distance(animator.transform.position, heroController.GetTargets()[0].transform.position);
+            float dist = Vector3.Distance(animator.transform.position, heroController.GetMainTarget().transform.position);
             if (dist < heroController.GetChaseRadius())
             {
                 animator.Play(ChaseState);
