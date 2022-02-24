@@ -8,7 +8,7 @@ namespace Behaviours
         private GameObject mTarget;
         private float mSpeed;
         
-        public Vector3 mDirection = Vector3.zero;
+        private Vector3 mDirection = Vector3.zero;
 
         public void Init(GameObject target, float speed)
         {
@@ -27,6 +27,7 @@ namespace Behaviours
         void Update()
         {
             mDirection = (mTarget.transform.position - transform.position).normalized;
+            
             transform.position = Vector2.MoveTowards(transform.position, 
                 mTarget.transform.position, mSpeed * Time.deltaTime);
         }

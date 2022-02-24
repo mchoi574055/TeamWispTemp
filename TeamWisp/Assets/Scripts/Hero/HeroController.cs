@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace Hero
@@ -6,8 +7,9 @@ namespace Hero
     {
         [SerializeField] private Transform[] path;
         [SerializeField] private float walkSpeed;
-        
-        [SerializeField] private GameObject[] targets;
+
+        [SerializeField] private GameObject mainTarget;
+        [SerializeField] private List<GameObject> targets;
         [SerializeField] private float chaseRadius;
         
         [SerializeField] private float encircleRadius;
@@ -16,18 +18,25 @@ namespace Hero
         private Behaviours.FollowPath followPath;
         private Behaviours.Chase chase;
         private Behaviours.Encircle encircle;
-        
-        // Lifecycle
-        public void Start()
+
+        void AddBehaviours()
         {
             followPath = gameObject.AddComponent<Behaviours.FollowPath>();
             followPath.Init(path, walkSpeed);
             
             chase = gameObject.AddComponent<Behaviours.Chase>();
-            chase.Init(targets[0], walkSpeed);
+            chase.Init(mainTarget, walkSpeed);
             
             encircle = gameObject.AddComponent<Behaviours.Encircle>();
-            encircle.Init(targets[0], walkSpeed);
+            encircle.Init(mainTarget, walkSpeed);
+        }
+        
+        // Lifecycle
+        public void Start()
+        {
+            if(!targets.Contains(mainTarget)) targets.Add(mainTarget);
+            
+            AddBehaviours();
         }
         
         public int level = 3;
@@ -50,8 +59,13 @@ namespace Hero
         {
             return encircleRadius;
         }
+
+        public GameObject GetMainTarget()
+        {
+            return mainTarget;
+        }
         
-        public GameObject[] GetTargets()
+        public List<GameObject> GetTargets()
         {
             return targets;
         }
