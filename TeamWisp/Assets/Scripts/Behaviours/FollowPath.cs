@@ -21,6 +21,7 @@ namespace Behaviours
         {
             mPath = path;
             mSpeed = speed;
+            
             enabled = false;
         }
         

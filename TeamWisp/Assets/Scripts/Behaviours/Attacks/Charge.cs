@@ -20,59 +20,50 @@ namespace Behaviours.Attacks
             mTarget = target;
             mSpeed = speed;
             mDistance = distance;
+            
             enabled = false;
         }
         
         // Lifecycle
-        new void Awake()
-        {
-            base.Awake();
-        }
-        
-        new void Start()
-        {
-            base.Start();
-        }
 
-        new void OnEnable()
+        protected override void OnStart()
         {
-            base.OnEnable();
+            base.OnStart();
             mDirection = (mTarget.transform.position - transform.position).normalized;
             mEndPosition = transform.position + (mDirection * mDistance);
         }
-
-        new void Update()
-        {
-            base.Update();
-        }
         
-        //Events
-        protected override void OnAnticipationComplete()
-        {
-            
-        }
-
-        protected override void OnActionComplete()
-        {
-            
-        }
-
-        //Methods
-        protected override void Anticipation()
-        {
-            
-        }
+        // protected override void Anticipation()
+        // {
+        //     base.Anticipation();
+        // }
+        
+        // protected override void OnAnticipationComplete()
+        // {
+        //     base.OnAnticipationComplete();
+        // }
 
         protected override void Action()
         {
+            base.Action();
             transform.position = Vector3.MoveTowards(transform.position, 
                 mEndPosition, 
                 mSpeed * Time.deltaTime);
         }
 
-        protected override void Recovery()
-        {
-            
-        }
+        // protected override void OnActionComplete()
+        // {
+        //     base.OnActionComplete();
+        // }
+
+        // protected override void Recovery()
+        // {
+        //     base.Recovery();
+        // }
+
+        // protected override void OnComplete()
+        // {
+        //     base.OnComplete();
+        // }
     }
 }
