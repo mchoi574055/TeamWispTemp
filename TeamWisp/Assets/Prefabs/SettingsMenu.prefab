@@ -266,6 +266,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 310b84e06175836468b91603fd9222d3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  volSlider: {fileID: 6891464026646616837}
+  fullScreenToggle: {fileID: 6891464027027587575}
+  resDropDown: {fileID: 0}
 --- !u!1 &6891464026826235063
 GameObject:
   m_ObjectHideFlags: 0

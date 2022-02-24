@@ -27,26 +27,31 @@ public class SettingsMenu : MonoBehaviour
     public void setVolume(System.Single vol)
     {
         // set game volume https://alessandrofama.com/tutorials/fmod/unity/mixer
-        //Settings.VOLUME = volume.value;
-        Debug.Log((float)vol);
+        Settings.VOLUME = (float)vol;
     }
 
     public void setResolution(int resolution)
     {
         Debug.Log(resolution);
+        //Screen.SetResolution(width, height, Settings.isFullScreen == 1);
     }
 
     public void setFullScreen(bool fullScreen)
     {
-        Debug.Log(fullScreen);
-        //Settings.isFullScreen = isOn ? 1 : 0;
-        //Screen.fullScreen = isOn;
+        Settings.isFullScreen = fullScreen ? 1 : 0;
+        Screen.fullScreen = fullScreen;
+        //Screen.fullScreenMode = fullScreen ? FullScreenMode.ExclusiveFullScreen : FullScreenMode.Windowed;
     }
 
     public void loadSettings()
     {
-        Debug.Log("hi");
+        // set values in settings menu
         volSlider.value = Settings.VOLUME;
+        fullScreenToggle.isOn = Settings.isFullScreen == 1;
+
+        // change actual settings
+        Screen.fullScreen = Settings.isFullScreen == 1;
+        //Screen.SetResolution(width, height, Settings.isFullScreen == 1);
     }
-    
+
 }
