@@ -4,6 +4,17 @@ namespace Hero
 {
     public class HeroController : MonoBehaviour
     {
+        
+        [SerializeField] private Transform[] path;
+        [SerializeField] private float walkSpeed;
+        
+        private Behaviours.FollowPath followPath;
+        public void Start()
+        {
+            followPath = gameObject.AddComponent<Behaviours.FollowPath>();
+            followPath.Init(path, walkSpeed);
+        }
+        
         public int level = 3;
         public int health = 40;
 
