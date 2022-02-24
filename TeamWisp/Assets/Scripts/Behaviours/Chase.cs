@@ -7,23 +7,35 @@ namespace Behaviours
         // Fields
         private GameObject mTarget;
         private float mSpeed;
+        
+        public Vector3 mDirection = Vector3.zero;
 
         public void Init(GameObject target, float speed)
         {
             mTarget = target;
             mSpeed = speed;
+
+            enabled = false;
         }
-        // Start is called before the first frame update
+        
+        // Lifecycle
         void Start()
         {
         
         }
 
-        // Update is called once per frame
         void Update()
         {
+            mDirection = (mTarget.transform.position - transform.position).normalized;
             transform.position = Vector2.MoveTowards(transform.position, 
                 mTarget.transform.position, mSpeed * Time.deltaTime);
+        }
+        
+        // Getters and setters
+
+        public Vector3 GetDirection()
+        {
+            return mDirection;
         }
     }
 }
