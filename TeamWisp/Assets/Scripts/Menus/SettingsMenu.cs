@@ -7,6 +7,7 @@ public class SettingsMenu : MonoBehaviour
 {
     // Start is called before the first frame update
     [SerializeField] Slider volumeSlider;
+    [SerializeField] Toggle fullScreen;
     Dropdown resolutionDropdown;
     void Start()
     {
@@ -28,8 +29,15 @@ public class SettingsMenu : MonoBehaviour
         Debug.Log(volume.value);
     }
 
-    public void setResolution(Dropdown resolution)
+    public void setResolution(int resolution)
     {
+        Debug.Log(resolution);
+    }
 
+    public void setFullScreen(Toggle fullscreen)
+    {
+        Debug.Log(fullscreen.isOn);
+        //Settings.isFullScreen = isOn ? 1 : 0;
+        //Screen.fullScreen = isOn;
     }
 }

@@ -27,4 +27,16 @@ public static class Settings
             onVolumeChanged.Invoke(value);
         }
     }
+    public static int isFullScreen
+    {
+        get
+        {
+            return PlayerPrefs.GetInt("FULL_SCREEN", 1);
+        }
+        set
+        {
+            PlayerPrefs.SetInt("FULL_SCREEN", value);
+            PlayerPrefs.Save();
+        }
+    }
 }
