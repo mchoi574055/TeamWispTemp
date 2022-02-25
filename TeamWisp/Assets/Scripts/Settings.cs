@@ -39,4 +39,30 @@ public static class Settings
             PlayerPrefs.Save();
         }
     }
+    public static int resolution
+    {
+        get
+        {
+            return PlayerPrefs.GetInt("RESOLUTION", 0);
+        }
+        set
+        {
+            PlayerPrefs.SetInt("RESOLUTION", value);
+            PlayerPrefs.Save();
+        }
+    }
+    public static float brightness
+    {
+        get
+        {
+            return PlayerPrefs.GetFloat("BRIGHTNESS", 1.0f);
+        }
+        set
+        {
+            PlayerPrefs.SetFloat("BRIGHTNESS", value);
+            PlayerPrefs.Save();
+            onVolumeChanged.Invoke(value);
+        }
+    }
+
 }

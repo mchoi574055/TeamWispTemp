@@ -9,6 +9,9 @@ public class SettingsMenu : MonoBehaviour
     [SerializeField] Slider volSlider;
     [SerializeField] Toggle fullScreenToggle;
     [SerializeField] Dropdown resDropDown;
+    [SerializeField] Slider brightnessSlider;
+
+    public int[,] indexToResolution = { { 1280, 720 }, { 1920, 1080 }, { 2560, 1440 } };
 
     void Start()
     {
@@ -32,8 +35,8 @@ public class SettingsMenu : MonoBehaviour
 
     public void setResolution(int resolution)
     {
-        Debug.Log(resolution);
-        //Screen.SetResolution(width, height, Settings.isFullScreen == 1);
+        Settings.resolution = resolution;
+        Screen.SetResolution(indexToResolution[resolution, 0], indexToResolution[resolution, 1], Settings.isFullScreen == 1);
     }
 
     public void setFullScreen(bool fullScreen)
@@ -43,15 +46,24 @@ public class SettingsMenu : MonoBehaviour
         //Screen.fullScreenMode = fullScreen ? FullScreenMode.ExclusiveFullScreen : FullScreenMode.Windowed;
     }
 
+    public void setBrightness(System.Single bright)
+    {
+        Settings.brightness = (float)bright;
+        Screen.brightness = (float)bright;
+    }
+
     public void loadSettings()
     {
         // set values in settings menu
         volSlider.value = Settings.VOLUME;
         fullScreenToggle.isOn = Settings.isFullScreen == 1;
+        resDropDown.value = Settings.resolution;
+        brightnessSlider.value = Settings.brightness;
 
         // change actual settings
         Screen.fullScreen = Settings.isFullScreen == 1;
-        //Screen.SetResolution(width, height, Settings.isFullScreen == 1);
+        Screen.SetResolution(indexToResolution[Settings.resolution, 0], indexToResolution[Settings.resolution, 1], Settings.isFullScreen == 1);
+        Screen.brightness = Settings.brightness;
     }
 
 }
