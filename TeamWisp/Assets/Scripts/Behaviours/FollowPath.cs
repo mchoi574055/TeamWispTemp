@@ -35,11 +35,13 @@ namespace Behaviours
         {
             if (Vector3.Distance(transform.position, mCurrentGoal.position) <= Margin)
             {
+                mDirection = Vector3.zero;
+                
                 ChangeGoal();
             }
             else
             {
-                mDirection = (mCurrentGoal.position - transform.position).normalized;
+                mDirection = (mCurrentGoal.position - transform.position);
                 
                 transform.position = Vector2.MoveTowards(transform.position,
                                     mCurrentGoal.position,
@@ -67,7 +69,7 @@ namespace Behaviours
 
         public Vector3 GetDirection()
         {
-            return mDirection;
+            return mDirection.magnitude > 0.1 ? mDirection.normalized : Vector3.zero;
         }
     }
 }

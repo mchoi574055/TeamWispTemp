@@ -26,7 +26,7 @@ namespace Behaviours
 
         void Update()
         {
-            mDirection = (mTarget.transform.position - transform.position).normalized;
+            mDirection = (mTarget.transform.position - transform.position);
             
             transform.position = Vector2.MoveTowards(transform.position, 
                 mTarget.transform.position, mSpeed * Time.deltaTime);
@@ -36,7 +36,7 @@ namespace Behaviours
 
         public Vector3 GetDirection()
         {
-            return mDirection;
+            return mDirection.magnitude > 0.1 ? mDirection.normalized : Vector3.zero;
         }
     }
 }

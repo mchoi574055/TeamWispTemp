@@ -29,7 +29,7 @@ namespace Behaviours.Attacks
         protected override void OnStart()
         {
             base.OnStart();
-            mDirection = (mTarget.transform.position - transform.position).normalized;
+            mDirection = (mTarget.transform.position - transform.position);
             mEndPosition = transform.position + (mDirection * mDistance);
         }
         
@@ -65,5 +65,11 @@ namespace Behaviours.Attacks
         // {
         //     base.OnComplete();
         // }
+        
+        // Getters and Setters
+        public Vector3 GetDirection()
+        {
+            return mDirection.magnitude > 0.1 ? mDirection.normalized : Vector3.zero;
+        }
     }
 }
