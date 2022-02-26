@@ -1,49 +1,47 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class PauseMenu : MonoBehaviour {
-    
-    // Private members
-    private static bool GameIsPaused = false;
+namespace Menus
+{
+    public class PauseMenu : MonoBehaviour {
 
-    // Serialized Fields
-    [SerializeField] private string titleScreenScene = "Title Screen";
+        // Serialized Fields
+        [SerializeField] private string titleScreenScene = "Title Screen";
 
-    // Lifecycle
-    void Update() {
+        // Lifecycle
+        void Update() {
         
-    }
-    
-    // Events
-
-    public void OnPause()
-    {
-        if (GameIsPaused) {
-            Resume();
-        } else {
-            Pause();
         }
-    }
     
-    // Methods
+        // Events
+
+        public void OnPause()
+        {
+            if (PauseGlobal.GameIsPaused) {
+                Resume();
+            } else {
+                Pause();
+            }
+        }
     
-    public void Resume() {
-        GameIsPaused = PauseGlobal.Resume();
-    }
+        // Methods
+    
+        public void Resume() {
+            PauseGlobal.Resume();
+        }
 
-    void Pause() {
-        GameIsPaused = PauseGlobal.Pause();
-    }
+        void Pause() {
+            PauseGlobal.Pause();
+        }
 
-    public void LoadTitleScreenScene() {
-        Time.timeScale = 1f;
-        SceneManager.LoadScene(titleScreenScene); //probably need to rework this part
-    }
+        public void LoadTitleScreenScene() {
+            Time.timeScale = 1f;
+            SceneManager.LoadScene(titleScreenScene); //probably need to rework this part
+        }
 
-    public void QuitGame() {
-        Debug.Log("quit game");
-        Application.Quit();
+        public void QuitGame() {
+            Debug.Log("quit game");
+            Application.Quit();
+        }
     }
 }
