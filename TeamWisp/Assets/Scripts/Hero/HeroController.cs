@@ -4,8 +4,12 @@ using UnityEngine;
 
 namespace Hero
 {
+    
+    
     public class HeroController : MonoBehaviour
     {
+        [SerializeField] private SaveData.HeroData heroData;
+
         [SerializeField] private Transform[] path;
         [SerializeField] private float walkSpeed;
         [SerializeField] private GameObject mainTarget;
@@ -38,16 +42,8 @@ namespace Hero
             
             AddBehaviours();
         }
-        
-        public int level = 3;
-        public int health = 40;
 
         // Methods
-        public void OnLevelUp()
-        {
-            Debug.Log("P key was pressed");
-            level += 1;
-        }
         
         // Getter and Setter
         public float GetChaseRadius()
@@ -71,36 +67,14 @@ namespace Hero
         }
 
         // Saving
-        public void OnSave()
+        public SaveData.HeroData GetHeroData()
         {
-            Debug.Log("s key pressed");
-            SaveHero();
-        
+            return heroData;
         }
 
-        public void OnLoad()
+        public void LoadHero(SaveData.HeroData heroData)
         {
-            Debug.Log("l key pressed");
-            LoadHero();
-
-        }
-        public void SaveHero()
-        {
-            SaveSystem.SaveHero(this);
-        }
-
-        public void LoadHero()
-        {
-            HeroData data = SaveSystem.LoadHero();
-
-            level = data.level;
-            // health = data.health
-
-            Vector3 position;
-            position.x = data.position[0];
-            position.y = data.position[1];
-            position.z = data.position[2];
-            transform.position = position;
+            this.heroData = heroData;
         }
     }
 }
