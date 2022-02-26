@@ -1,13 +1,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+
 namespace Hero
 {
     public class HeroController : MonoBehaviour
     {
         [SerializeField] private Transform[] path;
         [SerializeField] private float walkSpeed;
-
         [SerializeField] private GameObject mainTarget;
         [SerializeField] private List<GameObject> targets;
         [SerializeField] private float chaseRadius;
