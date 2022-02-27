@@ -13,8 +13,7 @@ public class SaveData
     [System.Serializable]
     public class HeroData
     {
-        public int level = 0;
         public int health = 10;
-        public float[] position = {0, 0, 0};
+        public int maxHealth = 10;
     }
 }

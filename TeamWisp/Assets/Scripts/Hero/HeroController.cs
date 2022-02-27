@@ -9,7 +9,7 @@ namespace Hero
     public class HeroController : MonoBehaviour
     {
         [SerializeField] private SaveData.HeroData heroData;
-
+        
         [SerializeField] private Transform[] path;
         [SerializeField] private float walkSpeed;
         [SerializeField] private GameObject mainTarget;
@@ -44,6 +44,17 @@ namespace Hero
         }
 
         // Methods
+        
+        public void UpdateHealth(int mod){
+            heroData.health += mod;
+
+            if(heroData.health > heroData.maxHealth){
+                heroData.health = heroData.maxHealth;
+            } else if (heroData.health <= 0){
+                heroData.health = 0;
+                Debug.Log("Hero Dead");
+            }
+        }
         
         // Getter and Setter
         public float GetChaseRadius()
