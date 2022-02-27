@@ -21,9 +21,7 @@ namespace Behaviours
         private Path path;
         private int currentWaypoint = 0;
         private bool reachedEndOfPath = false;
-        
         private Seeker seeker;
-        private Rigidbody2D rb;
         
         public Vector3 mDirection = Vector3.zero;
 
@@ -39,10 +37,9 @@ namespace Behaviours
         void Start()
         {
             seeker = GetComponent<Seeker>();
-            rb = GetComponent<Rigidbody2D>();
             
             mCurrentGoal = mPath[0];
-
+            
             seeker.StartPath(transform.position, mCurrentGoal.position, p =>
             {
                 path = p;
@@ -92,6 +89,12 @@ namespace Behaviours
                 mCurrentPoint++;
                 mCurrentGoal = mPath[mCurrentPoint];
             }
+            
+            seeker.StartPath(transform.position, mCurrentGoal.position, p =>
+            {
+                path = p;
+                currentWaypoint = 0;
+            });
         }
         
         // Getters and setters

@@ -13,9 +13,6 @@ namespace Enemy.Apple.StateMachine
         private const string ChaseState = "Chase";
 
         private Behaviours.Attacks.Charge mCharge;
-        
-        private static readonly int velocityX = Animator.StringToHash("VelocityX");
-        private static readonly int velocityY = Animator.StringToHash("VelocityY");
 
         // OnStateMachineEnter is called when entering a state machine via its Entry Node
         public override void OnStateMachineEnter(Animator animator, int stateMachinePathHash)
@@ -45,8 +42,7 @@ namespace Enemy.Apple.StateMachine
         // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
         public override void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
         {
-            animator.SetFloat(velocityX, mCharge.GetDirection().x);
-            animator.SetFloat(velocityY, mCharge.GetDirection().y);
+            
         }
 
         // OnStateExit is called when a transition ends and the state machine finishes evaluating this state
