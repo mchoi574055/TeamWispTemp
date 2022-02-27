@@ -17,7 +17,7 @@ namespace Enemy.Ranged.StateMachine
         // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
         public override void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
         {
-            Debug.Log("Chasing!");
+            Debug.Log("Patrolling!");
 
             rangedController = animator.GetComponent<RangedController>();
         
@@ -35,8 +35,6 @@ namespace Enemy.Ranged.StateMachine
             
             float dist = Vector3.Distance(animator.transform.position, hero.transform.position);
 
-            Debug.Log(dist);
-
             // player enters radius, so chase
             if (dist <= rangedController.GetChaseRadius())
             {
@@ -47,6 +45,7 @@ namespace Enemy.Ranged.StateMachine
         // OnStateExit is called when a transition ends and the state machine finishes evaluating this state
         public override void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
         {
+            Debug.Log("Exit Patrolling!");
             mFollowPath.enabled = false;
         }
     }

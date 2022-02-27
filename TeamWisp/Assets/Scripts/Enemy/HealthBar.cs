@@ -5,7 +5,7 @@ namespace Enemy
 {
     public class HealthBar : MonoBehaviour
     {
-        [SerializeField] Slider Slider;
+        public Slider Slider;
         [SerializeField] Color Low;
         [SerializeField] Color High;
         [SerializeField] Vector3 Offset;

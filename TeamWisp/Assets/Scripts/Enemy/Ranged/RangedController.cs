@@ -14,10 +14,11 @@ namespace Enemy.Ranged
         [SerializeField] private float attackDistance = 3f;
         
         // Member Variables
-        private Behaviours.FollowPath mFollowPath;
-        private Behaviours.Chase mChase;
         private GameObject hero;
         private HeroController heroController;
+        private Behaviours.FollowPath mFollowPath;
+        private Behaviours.Chase mChase;
+        private Behaviours.Encircle encircle;
     
         // Lifecycle
         void Start()
@@ -30,6 +31,9 @@ namespace Enemy.Ranged
         
             mChase = gameObject.AddComponent<Behaviours.Chase>();
             mChase.Init(hero, walkSpeed);
+
+            encircle = gameObject.AddComponent<Behaviours.Encircle>();
+            encircle.Init(hero, walkSpeed);
         }
 
         void Update()
