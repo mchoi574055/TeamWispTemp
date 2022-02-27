@@ -10,7 +10,8 @@ namespace Enemy.Ranged
         
         [SerializeField] private float walkSpeed;
         
-        [SerializeField] private float chaseRadius = 2f;
+        [SerializeField] private float chaseRadius = 5f;
+        [SerializeField] private float attackDistance = 3f;
         
         // Member Variables
         private Behaviours.FollowPath mFollowPath;
@@ -40,6 +41,11 @@ namespace Enemy.Ranged
         public float GetChaseRadius()
         {
             return chaseRadius;
+        }
+
+        public float GetAttackDistance()
+        {
+            return attackDistance;
         }
     }
 }

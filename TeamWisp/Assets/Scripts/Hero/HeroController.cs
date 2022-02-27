@@ -1,13 +1,17 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+
 namespace Hero
 {
+    
+    
     public class HeroController : MonoBehaviour
     {
+        [SerializeField] private SaveData.HeroData heroData;
+        
         [SerializeField] private Transform[] path;
         [SerializeField] private float walkSpeed;
-
         [SerializeField] private GameObject mainTarget;
         [SerializeField] private List<GameObject> targets;
         [SerializeField] private float chaseRadius;
@@ -38,15 +42,18 @@ namespace Hero
             
             AddBehaviours();
         }
-        
-        public int level = 3;
-        public int health = 40;
 
         // Methods
-        public void OnLevelUp()
-        {
-            Debug.Log("P key was pressed");
-            level += 1;
+        
+        public void UpdateHealth(int mod){
+            heroData.health += mod;
+
+            if(heroData.health > heroData.maxHealth){
+                heroData.health = heroData.maxHealth;
+            } else if (heroData.health <= 0){
+                heroData.health = 0;
+                Debug.Log("Hero Dead");
+            }
         }
         
         // Getter and Setter
@@ -71,36 +78,14 @@ namespace Hero
         }
 
         // Saving
-        public void OnSave()
+        public SaveData.HeroData GetHeroData()
         {
-            Debug.Log("s key pressed");
-            SaveHero();
-        
+            return heroData;
         }
 
-        public void OnLoad()
+        public void LoadHero(SaveData.HeroData heroData)
         {
-            Debug.Log("l key pressed");
-            LoadHero();
-
-        }
-        public void SaveHero()
-        {
-            SaveSystem.SaveHero(this);
-        }
-
-        public void LoadHero()
-        {
-            HeroData data = SaveSystem.LoadHero();
-
-            level = data.level;
-            // health = data.health
-
-            Vector3 position;
-            position.x = data.position[0];
-            position.y = data.position[1];
-            position.z = data.position[2];
-            transform.position = position;
+            this.heroData = heroData;
         }
     }
 }

@@ -13,7 +13,8 @@ namespace Behaviours
 
         private float mEncirclePos;
         private float mEncircleRadius;
-        
+        private bool mClockwise = false;
+            
         private Vector3 mDirection = Vector3.zero;
 
         public void Init(GameObject target, float speed)
@@ -25,42 +26,63 @@ namespace Behaviours
             enabled = false;
         }
 
+        // Lifecycle
         private void OnEnable()
         {
             if (!initialized) return;
             
-            Debug.Log(Vector3.SignedAngle(transform.position - mTarget.transform.position, Vector3.right, Vector3.forward));
             mEncircleRadius = Vector3.Distance(transform.position, mTarget.transform.position);
             mEncirclePos = Mathf.Deg2Rad * -Vector3.SignedAngle(transform.position - mTarget.transform.position, Vector3.right, Vector3.forward) * mEncircleRadius;
         }
 
-        // Start is called before the first frame update
         void Start()
         {
         
         }
 
-        // Update is called once per frame
         void Update()
         {
-            mDirection = (mTarget.transform.position - transform.position).normalized;
+            mDirection = (mTarget.transform.position - transform.position);
             
-            Vector3 circlePos = new Vector3(mEncircleRadius * (float) Math.Cos(mEncirclePos/mEncircleRadius), 
-                mEncircleRadius * (float) Math.Sin(mEncirclePos/mEncircleRadius), 0);
+            Vector3 circlePos = new Vector3(mEncircleRadius * Mathf.Cos(mEncirclePos/mEncircleRadius), 
+                mEncircleRadius * Mathf.Sin(mEncirclePos/mEncircleRadius), 0);
             transform.position = Vector3.MoveTowards(transform.position, mTarget.transform.position + circlePos, mSpeed * Time.deltaTime);
 
             if (transform.position == mTarget.transform.position + circlePos)
             {
-                mEncirclePos += mSpeed * Time.deltaTime;
+                mEncirclePos += (mClockwise ? -1 : 1) * (mSpeed * Time.deltaTime);
+                mEncirclePos %= (Mathf.PI * 2 * mEncircleRadius);
             }
         }
         
+        // Events
+
+        private void OnCollisionEnter2D(Collision2D col)
+        {
+            if (col.gameObject.layer == LayerMask.NameToLayer("Objects"))
+            {
+                mClockwise = !mClockwise;
+                
+                mEncirclePos += (mClockwise ? -1 : 1) * 90;
+                mEncirclePos %= (Mathf.PI * 2 * mEncircleRadius);
+            }
+        }
+
         // Getters and setters
+        public bool IsClockwise()
+        {
+            return mClockwise;
+        }
+
+        public void SetClockwise(bool clockwise)
+        {
+            mClockwise = clockwise;
+        }
 
         public Vector3 GetDirection()
         {
-            return mDirection;
+            return mDirection.magnitude > 0.1 ? mDirection.normalized : Vector3.zero;
         }
-
+        
     }
 }

@@ -8,7 +8,7 @@ namespace Behaviours.Attacks
         private GameObject mTarget;
         
         // Member Variables
-        private Vector3 mDirection;
+        private Vector3 mDirection = Vector3.zero;
         private float mSpeed;
         private float mDistance;
 
@@ -29,8 +29,8 @@ namespace Behaviours.Attacks
         protected override void OnStart()
         {
             base.OnStart();
-            mDirection = (mTarget.transform.position - transform.position).normalized;
-            mEndPosition = transform.position + (mDirection * mDistance);
+            mDirection = (mTarget.transform.position - transform.position);
+            mEndPosition = transform.position + (mDirection.normalized * mDistance);
         }
         
         // protected override void Anticipation()
@@ -65,5 +65,11 @@ namespace Behaviours.Attacks
         // {
         //     base.OnComplete();
         // }
+        
+        // Getters and Setters
+        public Vector3 GetDirection()
+        {
+            return mDirection.magnitude > 0.1 ? mDirection.normalized : Vector3.zero;
+        }
     }
 }

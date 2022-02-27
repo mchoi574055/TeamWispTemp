@@ -9,6 +9,7 @@ namespace Enemy.Ranged.StateMachine
         private const string AttackState = "Attack";
         private const string PatrolState = "Patrol";
         
+        private GameObject hero;
         private Behaviours.Chase mChase;
         private float attackDistance;
         
@@ -18,6 +19,8 @@ namespace Enemy.Ranged.StateMachine
             Debug.Log("Chasing!");
             
             rangedController = animator.GetComponent<RangedController>();
+
+            hero = GameObject.FindWithTag("Hero");
 
             attackDistance = rangedController.GetAttackDistance();
             
@@ -35,7 +38,7 @@ namespace Enemy.Ranged.StateMachine
                 animator.Play(AttackState);
             }
         }
-
+ 
         // OnStateExit is called when a transition ends and the state machine finishes evaluating this state
         public override void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
         {
