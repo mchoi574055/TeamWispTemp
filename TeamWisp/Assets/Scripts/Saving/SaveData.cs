@@ -9,7 +9,8 @@ public class SaveData
     public HeroData heroData = new HeroData();
     public int level = 0;
     public int checkPoint = 0;
-    
+    public string display_text = "Load Save";
+
     [System.Serializable]
     public class HeroData
     {
@@ -17,4 +18,6 @@ public class SaveData
         public int health = 10;
         public float[] position = {0, 0, 0};
     }
+
 }
+
