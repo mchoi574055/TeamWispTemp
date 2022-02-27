@@ -6,7 +6,7 @@ AnimationClip:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Apple_WalkDown
+  m_Name: Charge Recovery Left
   serializedVersion: 6
   m_Legacy: 0
   m_Compressed: 0
@@ -20,15 +20,7 @@ AnimationClip:
   m_PPtrCurves:
   - curve:
     - time: 0
-      value: {fileID: 3536108065833814191, guid: 4a6fc7d6a79ea2c45b3ae33b86b38d51, type: 3}
-    - time: 0.16666667
-      value: {fileID: -1708517425196374179, guid: 4a6fc7d6a79ea2c45b3ae33b86b38d51, type: 3}
-    - time: 0.33333334
-      value: {fileID: -4991829476314362770, guid: 4a6fc7d6a79ea2c45b3ae33b86b38d51, type: 3}
-    - time: 0.5
-      value: {fileID: 19847336024262301, guid: 4a6fc7d6a79ea2c45b3ae33b86b38d51, type: 3}
-    - time: 0.6666667
-      value: {fileID: 3536108065833814191, guid: 4a6fc7d6a79ea2c45b3ae33b86b38d51, type: 3}
+      value: {fileID: -7958188725866144723, guid: 2df4c56a48bb6564c8a21c03fae1b88a, type: 3}
     attribute: m_Sprite
     path: 
     classID: 212
@@ -48,22 +40,18 @@ AnimationClip:
       customType: 23
       isPPtrCurve: 1
     pptrCurveMapping:
-    - {fileID: 3536108065833814191, guid: 4a6fc7d6a79ea2c45b3ae33b86b38d51, type: 3}
-    - {fileID: -1708517425196374179, guid: 4a6fc7d6a79ea2c45b3ae33b86b38d51, type: 3}
-    - {fileID: -4991829476314362770, guid: 4a6fc7d6a79ea2c45b3ae33b86b38d51, type: 3}
-    - {fileID: 19847336024262301, guid: 4a6fc7d6a79ea2c45b3ae33b86b38d51, type: 3}
-    - {fileID: 3536108065833814191, guid: 4a6fc7d6a79ea2c45b3ae33b86b38d51, type: 3}
+    - {fileID: -7958188725866144723, guid: 2df4c56a48bb6564c8a21c03fae1b88a, type: 3}
   m_AnimationClipSettings:
     serializedVersion: 2
     m_AdditiveReferencePoseClip: {fileID: 0}
     m_AdditiveReferencePoseTime: 0
     m_StartTime: 0
-    m_StopTime: 0.68333334
+    m_StopTime: 0.016666668
     m_OrientationOffsetY: 0
     m_Level: 0
     m_CycleOffset: 0
     m_HasAdditiveReferencePose: 0
-    m_LoopTime: 1
+    m_LoopTime: 0
     m_LoopBlend: 0
     m_LoopBlendOrientation: 0
     m_LoopBlendPositionY: 0

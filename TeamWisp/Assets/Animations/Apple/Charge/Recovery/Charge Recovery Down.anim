@@ -6,7 +6,7 @@ AnimationClip:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Chase
+  m_Name: Charge Recovery Down
   serializedVersion: 6
   m_Legacy: 0
   m_Compressed: 0
@@ -19,10 +19,8 @@ AnimationClip:
   m_FloatCurves: []
   m_PPtrCurves:
   - curve:
-    - time: 0.016666668
-      value: {fileID: 7482667652216324306, guid: 5a1c31e9c1447cb4087571213acc9caf, type: 3}
-    - time: 0.032657877
-      value: {fileID: 7482667652216324306, guid: 5a1c31e9c1447cb4087571213acc9caf, type: 3}
+    - time: 0
+      value: {fileID: 7029567024368283818, guid: ce026b508c5fa2e4f8d6dccec6d0a347, type: 3}
     attribute: m_Sprite
     path: 
     classID: 212
@@ -42,14 +40,13 @@ AnimationClip:
       customType: 23
       isPPtrCurve: 1
     pptrCurveMapping:
-    - {fileID: 7482667652216324306, guid: 5a1c31e9c1447cb4087571213acc9caf, type: 3}
-    - {fileID: 7482667652216324306, guid: 5a1c31e9c1447cb4087571213acc9caf, type: 3}
+    - {fileID: 7029567024368283818, guid: ce026b508c5fa2e4f8d6dccec6d0a347, type: 3}
   m_AnimationClipSettings:
     serializedVersion: 2
     m_AdditiveReferencePoseClip: {fileID: 0}
     m_AdditiveReferencePoseTime: 0
     m_StartTime: 0
-    m_StopTime: 0.049324542
+    m_StopTime: 0.016666668
     m_OrientationOffsetY: 0
     m_Level: 0
     m_CycleOffset: 0
