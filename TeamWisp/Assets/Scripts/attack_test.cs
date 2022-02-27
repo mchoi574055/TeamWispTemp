@@ -14,9 +14,11 @@ public class attack_test : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Keyboard.current.spaceKey.wasPressedThisFrame)
-        {
-            FMODUnity.RuntimeManager.PlayOneShot("event:/sword_attack");
-        }
+        
+    }
+
+    public void OnTestKey1()
+    {
+        FMODUnity.RuntimeManager.PlayOneShot("event:/sword_attack");
     }
 }

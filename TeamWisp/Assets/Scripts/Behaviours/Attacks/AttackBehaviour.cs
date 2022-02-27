@@ -13,7 +13,7 @@ namespace Behaviours.Attacks
             Recovery
         }
         
-        private bool initialed = false;
+        private bool initialized = false;
         
         // Fields
         protected float mAnticipationDuration;
@@ -41,16 +41,14 @@ namespace Behaviours.Attacks
             actionComplete.AddListener(OnActionComplete);
         }
 
-        protected void Start()
-        {
-            
-        }
-
         protected void OnEnable()
         {
-            mState = State.Anticipation;
-            mAnticipationTimer = mAnticipationDuration;
-            mActionTimer = mActionDuration;
+            if(initialized) OnStart();
+        }
+
+        protected void OnDisable()
+        {
+            OnComplete();
         }
 
         protected void Update()
@@ -85,7 +83,9 @@ namespace Behaviours.Attacks
 
         protected virtual void OnStart()
         {
-            
+            mState = State.Anticipation;
+            mAnticipationTimer = mAnticipationDuration;
+            mActionTimer = mActionDuration;
         }
 
         protected virtual void Anticipation()
