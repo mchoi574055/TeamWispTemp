@@ -37,7 +37,7 @@ namespace Enemy
         {
             if (initialized)
             {
-                transform.position += (mDirection * mSpeed);
+                transform.position += (mDirection * mSpeed * Time.deltaTime);
 
                 if (Vector3.Distance(transform.position, mStartPosition) >= mDistance)
                 {
