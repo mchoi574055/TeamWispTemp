@@ -3,6 +3,7 @@ using UnityEngine;
 
 namespace Behaviours
 {
+    [RequireComponent(typeof(Seeker))]
     public class Chase : MonoBehaviour
     {
         //Constants
@@ -15,7 +16,6 @@ namespace Behaviours
         // Astar Variables
         private Path path;
         private int currentWaypoint = 0;
-        private bool reachedEndOfPath = false;
         private Seeker seeker;
         
         private Vector3 mDirection = Vector3.zero;
@@ -40,15 +40,7 @@ namespace Behaviours
         {
             if (path == null) return;
 
-            if (currentWaypoint >= path.vectorPath.Count)
-            {
-                reachedEndOfPath = true;
-                return;
-            }
-            else
-            {
-                reachedEndOfPath = false;
-            }
+            if (currentWaypoint >= path.vectorPath.Count) return;
 
             mDirection = (mTarget.transform.position - transform.position);
             
@@ -66,9 +58,9 @@ namespace Behaviours
         
         // Methods
 
-        private void UpdatePath()
+        private void UpdatePath() 
         {
-            if (seeker.IsDone()) ;
+            if (!seeker.IsDone()) return;
             
             seeker.StartPath(transform.position, mTarget.transform.position, p =>
             {

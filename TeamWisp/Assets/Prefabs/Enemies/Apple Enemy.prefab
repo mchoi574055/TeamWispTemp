@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 9162416165813658724}
   - component: {fileID: 9162416165813658725}
   - component: {fileID: 9162416165813658729}
+  - component: {fileID: 696944003}
   m_Layer: 0
   m_Name: Apple Enemy
   m_TagString: Enemy
@@ -145,3 +146,19 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!58 &696944003
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9162416165813658726}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.375

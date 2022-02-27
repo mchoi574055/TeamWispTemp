@@ -1,3 +1,4 @@
+using System;
 using Hero;
 using UnityEngine;
 
@@ -8,11 +9,18 @@ namespace Enemy.Apple
         // Fields
         [SerializeField] private Transform[] path;
         
+        [Space]
         [SerializeField] private float walkSpeed;
+
+        [Space] 
+        [SerializeField] private int contactDamage;
+        [SerializeField] private int chargeDamage;
         
+        [Space]
         [SerializeField] private float chaseRadius = 2f;
         [SerializeField] private float timePerCharge = 3.0f;
         
+        [Space]
         [SerializeField] private float chargeSpeed;
         [SerializeField] private float chargeDistance;
         [SerializeField] private float chargeAnticipationTime;
@@ -46,6 +54,24 @@ namespace Enemy.Apple
         
         }
         
+        // Events
+
+        private void OnTriggerEnter2D(Collider2D col)
+        {
+            Debug.Log(col.tag);
+            if (col.CompareTag("Hero"))
+            {
+                if (GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).IsName("Charge Action"))
+                {
+                    heroController.UpdateHealth(-chargeDamage);
+                }
+                else
+                {
+                    heroController.UpdateHealth(-contactDamage);
+                }
+            }
+        }
+
         // Getters and Setters
         public float GetChaseRadius()
         {

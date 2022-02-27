@@ -20,7 +20,6 @@ namespace Behaviours
         // Astar Variables
         private Path path;
         private int currentWaypoint = 0;
-        private bool reachedEndOfPath = false;
         private Seeker seeker;
         
         public Vector3 mDirection = Vector3.zero;
@@ -51,17 +50,15 @@ namespace Behaviours
         {
             if (path == null) return;
             
-            if (currentWaypoint >= path.vectorPath.Count)
+            if (currentWaypoint >= path.vectorPath.Count || Vector3.Distance(transform.position, mCurrentGoal.position) < NextWaypointRadius)
             {
                 mDirection = Vector3.zero;
-                reachedEndOfPath = true;
                 
                 ChangeGoal();
             }
             else
             {
                 mDirection = (path.vectorPath[currentWaypoint] - transform.position);
-                reachedEndOfPath = false;
                 
                 transform.position = Vector2.MoveTowards(transform.position,
                                     path.vectorPath[currentWaypoint],

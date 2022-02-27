@@ -17,8 +17,6 @@ namespace Enemy.Apple.StateMachine
         // OnStateMachineEnter is called when entering a state machine via its Entry Node
         public override void OnStateMachineEnter(Animator animator, int stateMachinePathHash)
         {
-            Debug.Log("Charging!");
-            
             appleController = animator.GetComponent<AppleController>();
             
             mCharge = animator.GetComponent<Behaviours.Attacks.Charge>();
@@ -54,7 +52,6 @@ namespace Enemy.Apple.StateMachine
         // OnStateMachineExit is called when exiting a state machine via its Exit Node
         public override void OnStateMachineExit(Animator animator, int stateMachinePathHash)
         {
-            Debug.Log("Exit Charging!");
             animator.Play(ChaseState);
             mCharge.enabled = false;
         }
