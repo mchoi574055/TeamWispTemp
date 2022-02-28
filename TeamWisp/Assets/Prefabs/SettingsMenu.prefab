@@ -254,7 +254,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 310b84e06175836468b91603fd9222d3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  volSlider: {fileID: 6891464026646616837}
+  masterVolSlider: {fileID: 6891464026646616837}
+  musicVolSlider: {fileID: 0}
+  sfxVolSlider: {fileID: 0}
   fullScreenToggle: {fileID: 6891464027027587575}
   resDropDown: {fileID: 6891464027693588708}
   brightnessSlider: {fileID: 0}
@@ -2493,7 +2495,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 6891464026638589603}
   m_Direction: 2
   m_Value: 0
-  m_Size: 1
+  m_Size: 0.913133
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
