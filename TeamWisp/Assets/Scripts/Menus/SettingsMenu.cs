@@ -17,6 +17,9 @@ public class SettingsMenu : MonoBehaviour
     static public int[,] indexToResolution = { { 1920, 1080 }, { 2560, 1440 }, { 7680, 4320 } };
     static public float[] indexToTextSpeed = { 0.001f, 0.025f, 0.05f };
     static public float[] indexToTextSize = { 1, 5, 10 };
+
+    
+
     void Start()
     {
         loadSettings();
@@ -33,16 +36,25 @@ public class SettingsMenu : MonoBehaviour
     {
         // set game volume https://alessandrofama.com/tutorials/fmod/unity/mixer
         Settings.master_volume = (float)vol;
+        FMOD.Studio.VCA vca;
+        vca = FMODUnity.RuntimeManager.GetVCA("vca:/Music");
+        vca.setVolume(Mathf.Pow(10.0f, vol / 20f));   // scale volume linearly
     }
 
     public void setMusicVolume(System.Single vol)
     {
         Settings.music_volume = (float)vol;
+        FMOD.Studio.VCA vca;
+        vca = FMODUnity.RuntimeManager.GetVCA("vca:/Music");
+        vca.setVolume(Mathf.Pow(10.0f, vol / 20f));   
     }
 
     public void setSFXVolume(System.Single vol)
     {
         Settings.sfx_volume = (float)vol;
+        FMOD.Studio.VCA vca;
+        vca = FMODUnity.RuntimeManager.GetVCA("vca:/SFX");
+        vca.setVolume(Mathf.Pow(10.0f, vol / 20f));
     }
 
     public void setResolution(int resolution)

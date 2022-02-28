@@ -155,10 +155,10 @@ MonoBehaviour:
   Path: ../fmod-proj/Build/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 637815773865628655
+  lastModified: 637816001582036313
   FileSizes:
   - Name: Desktop
-    Value: 1068896
+    Value: 1069280
   Exists: 1
 --- !u!114 &-6337643419285763269
 MonoBehaviour:
@@ -516,7 +516,7 @@ MonoBehaviour:
   - {fileID: -6742792605319969795}
   StringsBanks:
   - {fileID: 595589015563345626}
-  cacheTime: 637815773865668558
+  cacheTime: 637816001582055049
   cacheVersion: 10
 --- !u!114 &72030945825028577
 MonoBehaviour:
@@ -580,10 +580,10 @@ MonoBehaviour:
   Path: ../fmod-proj/Build/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 637815773865668558
+  lastModified: 637816001582055049
   FileSizes:
   - Name: Desktop
-    Value: 816
+    Value: 952
   Exists: 1
 --- !u!114 &1692920087138993971
 MonoBehaviour:
