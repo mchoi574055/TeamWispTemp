@@ -8,14 +8,13 @@ public class SettingsMenu : MonoBehaviour
     // Start is called before the first frame update
     [SerializeField] Slider volSlider;
     [SerializeField] Toggle fullScreenToggle;
-    [SerializeField] Dropdown resDropDown;
+    [SerializeField] TMPro.TMP_Dropdown resDropDown;
     [SerializeField] Slider brightnessSlider;
 
-    public int[,] indexToResolution = { { 1280, 720 }, { 1920, 1080 }, { 2560, 1440 } };
+    public int[,] indexToResolution = { { 1920, 1080 }, { 2560, 1440 }, { 7680, 4320 } };
 
     void Start()
     {
-        
         loadSettings();
     }
 
@@ -24,7 +23,6 @@ public class SettingsMenu : MonoBehaviour
     {
         
     }
-
 
 
     public void setVolume(System.Single vol)
@@ -48,12 +46,20 @@ public class SettingsMenu : MonoBehaviour
 
     public void setBrightness(System.Single bright)
     {
+        Debug.Log(bright);
         Settings.brightness = (float)bright;
         Screen.brightness = (float)bright;
     }
 
     public void loadSettings()
     {
+        
+        // so that the functions ONLY run at startup
+        volSlider.onValueChanged.AddListener( vol => setVolume(vol) );
+        fullScreenToggle.onValueChanged.AddListener( isOn => setFullScreen(isOn) );
+        resDropDown.onValueChanged.AddListener(val => setResolution(val) );
+        //brightnessSlider.onValueChanged.AddListener(delegate { setBrightness(brightnessSlider.value); });
+
         // set values in settings menu
         volSlider.value = Settings.VOLUME;
         fullScreenToggle.isOn = Settings.isFullScreen == 1;
