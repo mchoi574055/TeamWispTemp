@@ -6,19 +6,20 @@ namespace Enemy.Ranged
     public class RangedController : MonoBehaviour
     {
         // Fields
+        public Behaviours.Attacks.Projectile projectile;
         [SerializeField] private Transform[] path;
-        
         [SerializeField] private float walkSpeed;
-        
         [SerializeField] private float chaseRadius = 5f;
-        [SerializeField] private float attackDistance = 3f;
-        
+        [SerializeField] private float startTimePerShot = 2f;
+        [SerializeField] private float shootSpeed;
+        [SerializeField] private float shootRange;        
         // Member Variables
         private GameObject hero;
         private HeroController heroController;
         private Behaviours.FollowPath mFollowPath;
         private Behaviours.Chase mChase;
-        private Behaviours.Encircle encircle;
+        private Behaviours.Encircle mEncircle;
+        private Behaviours.Attacks.Shoot mShoot;
     
         // Lifecycle
         void Start()
@@ -32,8 +33,13 @@ namespace Enemy.Ranged
             mChase = gameObject.AddComponent<Behaviours.Chase>();
             mChase.Init(hero, walkSpeed);
 
-            encircle = gameObject.AddComponent<Behaviours.Encircle>();
-            encircle.Init(hero, walkSpeed);
+            mEncircle = gameObject.AddComponent<Behaviours.Encircle>();
+            mEncircle.Init(hero, walkSpeed);
+
+            mShoot = gameObject.AddComponent<Behaviours.Attacks.Shoot>();
+            mShoot.Init(projectile, startTimePerShot, shootSpeed, shootRange);
+
+
         }
 
         void Update()
@@ -47,9 +53,9 @@ namespace Enemy.Ranged
             return chaseRadius;
         }
 
-        public float GetAttackDistance()
+        public float GetAttackRange()
         {
-            return attackDistance;
+            return shootRange;
         }
     }
 }

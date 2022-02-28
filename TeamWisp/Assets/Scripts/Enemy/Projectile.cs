@@ -1,20 +1,17 @@
 using UnityEngine;
 
-namespace Enemy
+namespace Behaviours.Attacks
 {
     public class Projectile : MonoBehaviour
     {
         private bool initialized = false;
         
-        // Field
-        private float mSpeed;
-        private float mDistance;
-        
         // Member Variables
         // TODO Add heroController
         private GameObject hero;
+        private float mSpeed;
+        private float mDistance;
         private Vector3 mDirection;
-
         private Vector3 mStartPosition;
 
         public void Init(float speed, float distance)

@@ -34,7 +34,7 @@ namespace Enemy.Ranged.StateMachine
 
             float dist = Vector3.Distance(animator.transform.position, hero.transform.position);
             
-            if (dist > rangedController.GetAttackDistance())
+            if (dist > rangedController.GetAttackRange())
             {
                 animator.Play(ChaseState);
             }

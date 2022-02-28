@@ -2,30 +2,22 @@ using UnityEngine;
 
 namespace Enemy.Ranged.StateMachine
 {
-    public class Chase : StateMachineBehaviour
+    public class Ready : StateMachineBehaviour
     {
         private RangedController rangedController;
-        
-        private const string EncircleState = "Encircle";
-        private const string PatrolState = "Patrol";
-        
         private GameObject hero;
-        private Behaviours.Chase mChase;
         private float attackDistance;
+        private const string ShootState = "Shoot";
+
         
         // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
         public override void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
-        {
-            Debug.Log("Chasing!");
-            
+        {            
             rangedController = animator.GetComponent<RangedController>();
 
             hero = GameObject.FindWithTag("Hero");
 
             attackDistance = rangedController.GetAttackRange();
-            
-            mChase = animator.GetComponent<Behaviours.Chase>();
-            mChase.enabled = true;
         }
 
         // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
@@ -35,15 +27,13 @@ namespace Enemy.Ranged.StateMachine
             
             if(dist <= attackDistance)
             {
-                animator.Play(EncircleState);
+                animator.Play(ShootState);
             }
         }
  
         // OnStateExit is called when a transition ends and the state machine finishes evaluating this state
         public override void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
         {
-            Debug.Log("Exit Chasing!");
-            mChase.enabled = false;
         }
     }
 }
