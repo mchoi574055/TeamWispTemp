@@ -19,5 +19,7 @@ class startClass
         vca.setVolume(Mathf.Pow(10.0f, Settings.music_volume / 20f));
         vca = FMODUnity.RuntimeManager.GetVCA("vca:/SFX");
         vca.setVolume(Mathf.Pow(10.0f, Settings.sfx_volume / 20f));
+
+        // set text settings here
     }
 }

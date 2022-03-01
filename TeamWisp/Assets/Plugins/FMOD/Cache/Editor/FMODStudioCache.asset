@@ -51,6 +51,33 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 0
+--- !u!114 &-8578774074350006554
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/sword_sploosh
+  m_EditorClassIdentifier: 
+  Path: event:/sword_sploosh
+  Guid:
+    Data1: -1846419473
+    Data2: 1157883236
+    Data3: 815494530
+    Data4: -1006094442
+  Banks:
+  - {fileID: -6742792605319969795}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
 --- !u!114 &-8544938616006960560
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -155,10 +182,10 @@ MonoBehaviour:
   Path: ../fmod-proj/Build/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 637816001582036313
+  lastModified: 637816644747023606
   FileSizes:
   - Name: Desktop
-    Value: 1069280
+    Value: 1204736
   Exists: 1
 --- !u!114 &-6337643419285763269
 MonoBehaviour:
@@ -319,6 +346,33 @@ MonoBehaviour:
   IsOneShot: 0
   Parameters:
   - {fileID: -8544938616006960560}
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
+--- !u!114 &-2926892664480125348
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/running_on_grass
+  m_EditorClassIdentifier: 
+  Path: event:/running_on_grass
+  Guid:
+    Data1: -163132819
+    Data2: 1230541724
+    Data3: 420518829
+    Data4: -107428305
+  Banks:
+  - {fileID: -6742792605319969795}
+  IsStream: 1
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
   MinDistance: 1
   MaxDistance: 20
   Length: 0
@@ -511,12 +565,14 @@ MonoBehaviour:
   EditorEvents:
   - {fileID: 2360591527751422318}
   - {fileID: -2917767846091045682}
+  - {fileID: -2926892664480125348}
+  - {fileID: -8578774074350006554}
   EditorParameters: []
   MasterBanks:
   - {fileID: -6742792605319969795}
   StringsBanks:
   - {fileID: 595589015563345626}
-  cacheTime: 637816001582055049
+  cacheTime: 637816644747033607
   cacheVersion: 10
 --- !u!114 &72030945825028577
 MonoBehaviour:
@@ -580,10 +636,10 @@ MonoBehaviour:
   Path: ../fmod-proj/Build/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 637816001582055049
+  lastModified: 637816644747033607
   FileSizes:
   - Name: Desktop
-    Value: 952
+    Value: 1048
   Exists: 1
 --- !u!114 &1692920087138993971
 MonoBehaviour:
