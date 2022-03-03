@@ -1,13 +1,26 @@
+using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
 namespace Hero
 {
+    
+    
     public class HeroController : MonoBehaviour
     {
+        // Hero Data
+        [SerializeField] private SaveData.HeroData heroData;
+        
+        // Path
         [SerializeField] private Transform[] path;
         [SerializeField] private float walkSpeed;
-
+        
+        // Combat
+        [SerializeField] private Collider2D hitbox;
+        [SerializeField] private float invincibilityTime;
+        
         [SerializeField] private GameObject mainTarget;
         [SerializeField] private List<GameObject> targets;
         [SerializeField] private float chaseRadius;
@@ -39,14 +52,36 @@ namespace Hero
             AddBehaviours();
         }
         
-        public int level = 3;
-        public int health = 40;
+        // Events
+
+        private void OnTriggerEnter2D(Collider2D col)
+        {
+            if (col.CompareTag("Enemy"))
+            {
+                GetComponent<Animator>().Play("IFrames");
+                hitbox.enabled = false;
+                StartCoroutine(StopIFrames());
+            }
+        }
 
         // Methods
-        public void OnLevelUp()
+
+        IEnumerator StopIFrames()
         {
-            Debug.Log("P key was pressed");
-            level += 1;
+            yield return new WaitForSeconds(invincibilityTime);
+            GetComponent<Animator>().Play("Normal");
+            hitbox.enabled = true;
+        }
+        
+        public void UpdateHealth(int mod){
+            heroData.health += mod;
+
+            if(heroData.health > heroData.maxHealth){
+                heroData.health = heroData.maxHealth;
+            } else if (heroData.health <= 0){
+                heroData.health = 0;
+                Debug.Log("Hero Dead");
+            }
         }
         
         // Getter and Setter
@@ -71,36 +106,14 @@ namespace Hero
         }
 
         // Saving
-        public void OnSave()
+        public SaveData.HeroData GetHeroData()
         {
-            Debug.Log("s key pressed");
-            SaveHero();
-        
+            return heroData;
         }
 
-        public void OnLoad()
+        public void LoadHero(SaveData.HeroData heroData)
         {
-            Debug.Log("l key pressed");
-            LoadHero();
-
-        }
-        public void SaveHero()
-        {
-            SaveSystem.SaveHero(this);
-        }
-
-        public void LoadHero()
-        {
-            HeroData data = SaveSystem.LoadHero();
-
-            level = data.level;
-            // health = data.health
-
-            Vector3 position;
-            position.x = data.position[0];
-            position.y = data.position[1];
-            position.z = data.position[2];
-            transform.position = position;
+            this.heroData = heroData;
         }
     }
 }

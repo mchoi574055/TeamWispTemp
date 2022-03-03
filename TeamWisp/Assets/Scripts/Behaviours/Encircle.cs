@@ -44,16 +44,30 @@ namespace Behaviours
         {
             mDirection = (mTarget.transform.position - transform.position);
             
-            Vector3 circlePos = new Vector3(mEncircleRadius * (float) Math.Cos(mEncirclePos/mEncircleRadius), 
-                mEncircleRadius * (float) Math.Sin(mEncirclePos/mEncircleRadius), 0);
+            Vector3 circlePos = new Vector3(mEncircleRadius * Mathf.Cos(mEncirclePos/mEncircleRadius), 
+                mEncircleRadius * Mathf.Sin(mEncirclePos/mEncircleRadius), 0);
             transform.position = Vector3.MoveTowards(transform.position, mTarget.transform.position + circlePos, mSpeed * Time.deltaTime);
 
             if (transform.position == mTarget.transform.position + circlePos)
             {
                 mEncirclePos += (mClockwise ? -1 : 1) * (mSpeed * Time.deltaTime);
+                mEncirclePos %= (Mathf.PI * 2 * mEncircleRadius);
             }
         }
         
+        // Events
+
+        private void OnCollisionEnter2D(Collision2D col)
+        {
+            if (col.gameObject.layer == LayerMask.NameToLayer("Objects"))
+            {
+                mClockwise = !mClockwise;
+                
+                mEncirclePos += (mClockwise ? -1 : 1) * 90;
+                mEncirclePos %= (Mathf.PI * 2 * mEncircleRadius);
+            }
+        }
+
         // Getters and setters
         public bool IsClockwise()
         {
@@ -69,6 +83,6 @@ namespace Behaviours
         {
             return mDirection.magnitude > 0.1 ? mDirection.normalized : Vector3.zero;
         }
-
+        
     }
 }

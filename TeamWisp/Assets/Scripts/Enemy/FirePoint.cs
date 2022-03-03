@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Enemy
+namespace Behaviours.Attacks
 {
     public class FirePoint: MonoBehaviour
     {
