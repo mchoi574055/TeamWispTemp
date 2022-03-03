@@ -23,7 +23,46 @@ public static class Settings
         set
         {
             PlayerPrefs.SetFloat("VOLUME", value);
+            PlayerPrefs.Save();
             onVolumeChanged.Invoke(value);
         }
     }
+    public static int isFullScreen
+    {
+        get
+        {
+            return PlayerPrefs.GetInt("FULL_SCREEN", 1);
+        }
+        set
+        {
+            PlayerPrefs.SetInt("FULL_SCREEN", value);
+            PlayerPrefs.Save();
+        }
+    }
+    public static int resolution
+    {
+        get
+        {
+            return PlayerPrefs.GetInt("RESOLUTION", 0);
+        }
+        set
+        {
+            PlayerPrefs.SetInt("RESOLUTION", value);
+            PlayerPrefs.Save();
+        }
+    }
+    public static float brightness
+    {
+        get
+        {
+            return PlayerPrefs.GetFloat("BRIGHTNESS", 1.0f);
+        }
+        set
+        {
+            PlayerPrefs.SetFloat("BRIGHTNESS", value);
+            PlayerPrefs.Save();
+            onVolumeChanged.Invoke(value);
+        }
+    }
+
 }
