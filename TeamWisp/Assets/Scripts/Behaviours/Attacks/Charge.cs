@@ -8,7 +8,7 @@ namespace Behaviours.Attacks
         private GameObject mTarget;
         
         // Member Variables
-        private Vector3 mDirection;
+        private Vector3 mDirection = Vector3.zero;
         private float mSpeed;
         private float mDistance;
 
@@ -20,59 +20,56 @@ namespace Behaviours.Attacks
             mTarget = target;
             mSpeed = speed;
             mDistance = distance;
+            
             enabled = false;
         }
         
         // Lifecycle
-        new void Awake()
-        {
-            base.Awake();
-        }
-        
-        new void Start()
-        {
-            base.Start();
-        }
 
-        new void OnEnable()
-        {
-            base.OnEnable();
-            mDirection = (mTarget.transform.position - transform.position).normalized;
-            mEndPosition = transform.position + (mDirection * mDistance);
-        }
-
-        new void Update()
-        {
-            base.Update();
-        }
+        // protected override void OnStart()
+        // {
+        //     base.OnStart();
+        // }
         
-        //Events
+        // protected override void Anticipation()
+        // {
+        //     base.Anticipation();
+        // }
+        
         protected override void OnAnticipationComplete()
         {
-            
-        }
-
-        protected override void OnActionComplete()
-        {
-            
-        }
-
-        //Methods
-        protected override void Anticipation()
-        {
-            
+            base.OnAnticipationComplete();
+            mDirection = (mTarget.transform.position - transform.position);
+            mEndPosition = transform.position + (mDirection.normalized * mDistance);
         }
 
         protected override void Action()
         {
+            base.Action();
             transform.position = Vector3.MoveTowards(transform.position, 
                 mEndPosition, 
                 mSpeed * Time.deltaTime);
         }
 
-        protected override void Recovery()
+        // protected override void OnActionComplete()
+        // {
+        //     base.OnActionComplete();
+        // }
+
+        // protected override void Recovery()
+        // {
+        //     base.Recovery();
+        // }
+
+        // protected override void OnComplete()
+        // {
+        //     base.OnComplete();
+        // }
+        
+        // Getters and Setters
+        public Vector3 GetDirection()
         {
-            
+            return mDirection.magnitude > 0.1 ? mDirection.normalized : Vector3.zero;
         }
     }
 }

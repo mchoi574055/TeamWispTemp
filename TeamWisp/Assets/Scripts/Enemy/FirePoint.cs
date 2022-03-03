@@ -1,28 +1,33 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class FirePoint: MonoBehaviour
+namespace Behaviours.Attacks
 {
-    public GameObject projectile;
-    [SerializeField] private float startTimeBtwShots = 2f;
-
-    private float timeBtwShots;
-
-    // Start is called before the first frame update
-    void Start()
+    public class FirePoint: MonoBehaviour
     {
-        timeBtwShots = startTimeBtwShots;
-    }
+        public Projectile projectile;
+        [SerializeField] private float startTimeBtwShots = 2f;
+        [SerializeField] private float speed = 10f;
+        [SerializeField] private float range = 5f;
 
-    // Update is called once per frame
-    void Update()
-    {
-        if(timeBtwShots <= 0){
-            Instantiate(projectile, transform.position, Quaternion.identity);
+        private float timeBtwShots;
+
+        // Start is called before the first frame update
+        void Start()
+        {
             timeBtwShots = startTimeBtwShots;
-        }else {
-            timeBtwShots -= Time.deltaTime;
+        }
+
+        // Update is called once per frame
+        void Update()
+        {
+            if(timeBtwShots <= 0){
+                Projectile proj = Instantiate(projectile, transform.position, Quaternion.identity);
+                proj.Init(speed, range);
+                
+                timeBtwShots = startTimeBtwShots;
+            }else {
+                timeBtwShots -= Time.deltaTime;
+            }
         }
     }
 }

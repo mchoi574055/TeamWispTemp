@@ -13,7 +13,7 @@ namespace Behaviours.Attacks
             Recovery
         }
         
-        private bool initialed = false;
+        private bool initialized = false;
         
         // Fields
         protected float mAnticipationDuration;
@@ -30,31 +30,32 @@ namespace Behaviours.Attacks
         {
             mAnticipationDuration = anticipationDuration;
             mActionDuration = actionDuration;
+
+            initialized = true;
         }
 
         // Lifecycle
         protected void Awake()
         {
             if (anticipationComplete == null) anticipationComplete = new UnityEvent();
-            anticipationComplete.AddListener(OnAnticipationComplete);
             if (actionComplete == null) actionComplete = new UnityEvent();
-            actionComplete.AddListener(OnActionComplete);
-        }
-
-        protected void Start()
-        {
-            
         }
 
         protected void OnEnable()
         {
-            mState = State.Anticipation;
-            mAnticipationTimer = mAnticipationDuration;
-            mActionTimer = mActionDuration;
+            if (!initialized) return;
+            OnStart();
+        }
+
+        protected void OnDisable()
+        {
+            if (!initialized) return;
+            OnComplete();
         }
 
         protected void Update()
         {
+            if (!initialized) return;
             switch (mState)
             {
                 case State.Anticipation:
@@ -85,7 +86,12 @@ namespace Behaviours.Attacks
 
         protected virtual void OnStart()
         {
+            anticipationComplete.AddListener(OnAnticipationComplete);
+            actionComplete.AddListener(OnActionComplete);
             
+            mState = State.Anticipation;
+            mAnticipationTimer = mAnticipationDuration;
+            mActionTimer = mActionDuration;
         }
 
         protected virtual void Anticipation()
@@ -115,7 +121,8 @@ namespace Behaviours.Attacks
 
         protected virtual void OnComplete()
         {
-            
+            anticipationComplete.RemoveAllListeners();
+            actionComplete.RemoveAllListeners();
         }
     }
 }

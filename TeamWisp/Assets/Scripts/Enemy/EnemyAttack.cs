@@ -6,7 +6,7 @@ using UnityEngine;
 public class EnemyAttack : MonoBehaviour
 {
     // Start is called before the first frame update
-    [SerializeField] private float attackDamage = 10f;
+    [SerializeField] private int attackDamage = 10;
     [SerializeField] private float attackSpeed = 0.5f;
     //[SerializeField] private float knockbackPower = 100f;
     //[SerializeField] private float knockbackDuration = 1f;
@@ -16,7 +16,7 @@ public class EnemyAttack : MonoBehaviour
     private void OnCollisionStay2D(Collision2D other) {
         if(other.gameObject.CompareTag("Hero")){
             if(canAttack >= attackSpeed){
-                other.gameObject.GetComponent<HeroHealth>().UpdateHealth(-attackDamage);
+                other.gameObject.GetComponent<HeroController>().UpdateHealth(-attackDamage);
                 canAttack = 0f;
 
             }
