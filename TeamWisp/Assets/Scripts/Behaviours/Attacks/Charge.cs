@@ -8,7 +8,7 @@ namespace Behaviours.Attacks
         private GameObject mTarget;
         
         // Member Variables
-        private Vector3 mDirection;
+        private Vector3 mDirection = Vector3.zero;
         private float mSpeed;
         private float mDistance;
 
@@ -26,22 +26,22 @@ namespace Behaviours.Attacks
         
         // Lifecycle
 
-        protected override void OnStart()
-        {
-            base.OnStart();
-            mDirection = (mTarget.transform.position - transform.position);
-            mEndPosition = transform.position + (mDirection * mDistance);
-        }
+        // protected override void OnStart()
+        // {
+        //     base.OnStart();
+        // }
         
         // protected override void Anticipation()
         // {
         //     base.Anticipation();
         // }
         
-        // protected override void OnAnticipationComplete()
-        // {
-        //     base.OnAnticipationComplete();
-        // }
+        protected override void OnAnticipationComplete()
+        {
+            base.OnAnticipationComplete();
+            mDirection = (mTarget.transform.position - transform.position);
+            mEndPosition = transform.position + (mDirection.normalized * mDistance);
+        }
 
         protected override void Action()
         {

@@ -1,19 +1,26 @@
+using Pathfinding;
 using UnityEngine;
 
 namespace Behaviours
 {
+    [RequireComponent(typeof(Seeker))]
     public class FollowPath : MonoBehaviour
     {
         //Constants
-        private const float Margin = 0.2f;
+        private const float NextWaypointRadius = 0.2f;
         
-        //Fields
-        private Transform[] mPath;
+        // Fields
         private float mSpeed;
         
-        //Member variables
+        // Path Variables
+        private Transform[] mPath;
         private int mCurrentPoint;
         private Transform mCurrentGoal;
+        
+        // Astar Variables
+        private Path path;
+        private int currentWaypoint = 0;
+        private Seeker seeker;
         
         public Vector3 mDirection = Vector3.zero;
 
@@ -28,12 +35,22 @@ namespace Behaviours
         // Lifecycle
         void Start()
         {
+            seeker = GetComponent<Seeker>();
+            
             mCurrentGoal = mPath[0];
+            
+            seeker.StartPath(transform.position, mCurrentGoal.position, p =>
+            {
+                path = p;
+                currentWaypoint = 0;
+            });
         }
 
         private void Update()
         {
-            if (Vector3.Distance(transform.position, mCurrentGoal.position) <= Margin)
+            if (path == null) return;
+            
+            if (currentWaypoint >= path.vectorPath.Count || Vector3.Distance(transform.position, mCurrentGoal.position) < NextWaypointRadius)
             {
                 mDirection = Vector3.zero;
                 
@@ -41,13 +58,19 @@ namespace Behaviours
             }
             else
             {
-                mDirection = (mCurrentGoal.position - transform.position);
+                mDirection = (path.vectorPath[currentWaypoint] - transform.position);
                 
                 transform.position = Vector2.MoveTowards(transform.position,
-                                    mCurrentGoal.position,
+                                    path.vectorPath[currentWaypoint],
                             mSpeed * Time.deltaTime);
-            }
+                
+                float distance = Vector2.Distance(transform.position, path.vectorPath[currentWaypoint]);
 
+                if (distance < NextWaypointRadius)
+                {
+                    currentWaypoint++;
+                }
+            }
         }
         
         // Methods
@@ -63,6 +86,12 @@ namespace Behaviours
                 mCurrentPoint++;
                 mCurrentGoal = mPath[mCurrentPoint];
             }
+            
+            seeker.StartPath(transform.position, mCurrentGoal.position, p =>
+            {
+                path = p;
+                currentWaypoint = 0;
+            });
         }
         
         // Getters and setters
