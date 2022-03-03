@@ -1,4 +1,5 @@
 ﻿title: Start
+position: -23,-334
 ---
 Hero: Ah... I hope that's the last of them...
 // [hero looks around nervously]
@@ -14,9 +15,7 @@ Hero: And besides: I've got the spear. The! Spear! Chronicled across the lands a
 Hero: I just fought through that swarm of monsters attracted to the Holy Temple, I can totally...
 
 -> Hello?
-    Player: Hello?
 -> Boo!!
-    Player: Boo!!
 // [weapon pulses]
 
 Hero: !!!!!!
@@ -25,24 +24,18 @@ Hero: Aaaaahhh!! Hello?? Who's talking??? Stay back - I'm armed and dangerous!!!
 // [hero turns in a circle]
 
 -> I'm over here!
-    Player: I'm over here!
 //[weapon pulses]
 
 Hero: The... spear?!? It can talk??? No one ever told me the spear could talk...!
 // wisp emerges from spear
 
--> branchy
-    Player: branchy
--> branch
-    Player: branch
+-> Greetings
+-> Tada~
 
 Hero: Oh. What? How did you get in there? Who are you?
 
 -> I don't know.
-Player: I don't know.
-
--> I just woke up in the spear like this.
-Player: I just woke up in the spear like this.
+    -> I just woke up in the spear like this.
 
 Hero: Hey, wait... were you helping me earlier? In the fight? When I was attacking, sometimes the spear would ignite and stuff...
 Hero: Was that you?
@@ -50,26 +43,21 @@ Hero: Was that you?
 Hero: Oh! I guess you must be some sort of wisp spirit attached to the spear, then, since you could control it like that.
 Hero: Um. Thank you for your help, earlier!
 
--> branchy
-    Player: branchy
--> branch
-    Player: branch
+-> You're welcome.
+-> No problem!
 
 Hero: But I haven't even properly introduced myself yet!
 Hero: Hello, O Virtuous and Mighty Spirit of the weapon_name -- 
 
 -> Spirit of the weapon_name?
-Player: Spirit of the weapon_name?
 
 Hero: weapon_name, weapon_title, etc.! I am hero_name, of the Honorable House of family_name, a hero --
 
 -> I have an actual name, you know...
-Player: I have an actual name, you know...
 
 Hero: -- hero of the finest calibre! I have come to -- wait, what did you just say?
 
 -> My name is...
-Player: My name is...
 // prompt user to enter name
 
 // [hero turns around to mutter to themself]
@@ -88,17 +76,15 @@ Hero: Probably you have *tons* of super wise advice for me...!
 "Super wise advice," huh... You rack your brain to try to come up with some "super wise advice" for the hero.
 
 -> The early bird gets the worm.
-    Player: The early bird gets the worm.
     <<jump Early_Bird>>
 -> Be yourself; everybody else is already taken.
-    Player: Be yourself; everybody else is already taken.
     <<jump Be_Yourself>>
 -> Four legs good, two legs bad.
-    Player: Four legs good, two legs bad.
     <<jump Animal_Farm>>
 ===
 
 title: Early_Bird
+position: -12,-20
 ---
 
 Hero: The early bird gets the worm...
@@ -106,10 +92,7 @@ Hero: ...
 Hero: What?
 
 -> You know, like...
-Player: You know, like...
-
--> You should start working on something as early as possible, or you might miss out on stuff.
-Player: You should start working on something as early as possible, or you might miss out on stuff.
+    -> You should start working on something as early as possible, or you might miss out on stuff.
 
 Hero: The early bird gets the worm... the early bird gets the worm... I think I get it??
 Hero: You must be referring to the quest... My quest.
@@ -121,6 +104,7 @@ Hero: ...
 ===
 
 title: Be_Yourself
+position: 231,-22
 ---
 
 Hero: Be yourself; everybody else is already taken...
@@ -128,13 +112,8 @@ Hero: ...
 Hero: What?
 
 -> You know, like...
-Player: You know, like...
-
--> Everybody has their own unique characteristics that lend themselves to different ways of approaching the same problem.
-Player: Everybody has their own unique characteristics that lend themselves to different ways of approaching the same problem.
-
--> But these different approaches are all individually valuable in their own ways.
-Player: But these different approaches are all individually valuable in their own ways.
+    -> Everybody has their own unique characteristics that lend themselves to different ways of approaching the same problem.
+        -> But these different approaches are all individually valuable in their own ways.
 
 Hero: Be yourself... everybody else is already taken. I see...
 Hero: You must be referring to the quest... My quest.
@@ -147,6 +126,7 @@ Hero: ...
 ===
 
 title: Animal_Farm
+position: -234,-24
 ---
 
 Hero: Four legs good, two legs bad...
@@ -154,10 +134,7 @@ Hero: ...
 Hero: What?
 
 -> Uh... animals are cool?
-Player: Uh... animals are cool?
-
--> To be honest. I don't really know, either.
-Player: To be honest. I don't really know, either.
+    -> To be honest. I don't really know, either.
 
 Hero: Animals... *are* pretty cool!!
 Hero: You know, back home, I had the best dog ever. I named her Buttercup, 'cause she was all yellow and pretty... like a buttercup, you know!
@@ -171,6 +148,7 @@ Hero: ...
 ===
 
 title: Intros2
+position: 9,301
 ---
 
 Hero: Well, um... Anyways...! blah blah blah a little more quest exposition & move on
