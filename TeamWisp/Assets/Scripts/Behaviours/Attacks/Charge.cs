@@ -26,22 +26,22 @@ namespace Behaviours.Attacks
         
         // Lifecycle
 
-        protected override void OnStart()
-        {
-            base.OnStart();
-            mDirection = (mTarget.transform.position - transform.position);
-            mEndPosition = transform.position + (mDirection.normalized * mDistance);
-        }
+        // protected override void OnStart()
+        // {
+        //     base.OnStart();
+        // }
         
         // protected override void Anticipation()
         // {
         //     base.Anticipation();
         // }
         
-        // protected override void OnAnticipationComplete()
-        // {
-        //     base.OnAnticipationComplete();
-        // }
+        protected override void OnAnticipationComplete()
+        {
+            base.OnAnticipationComplete();
+            mDirection = (mTarget.transform.position - transform.position);
+            mEndPosition = transform.position + (mDirection.normalized * mDistance);
+        }
 
         protected override void Action()
         {
