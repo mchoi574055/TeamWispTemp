@@ -29,6 +29,11 @@ namespace Enemy.Apple.StateMachine
             {
                 animator.Play(Recovery);
             });
+            mCharge.recoveryComplete.AddListener(() =>
+            {
+                animator.Play(ChaseState);
+                mCharge.enabled = false;
+            });
         }
 
         // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
@@ -47,13 +52,6 @@ namespace Enemy.Apple.StateMachine
         public override void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
         {
             
-        }
-
-        // OnStateMachineExit is called when exiting a state machine via its Exit Node
-        public override void OnStateMachineExit(Animator animator, int stateMachinePathHash)
-        {
-            animator.Play(ChaseState);
-            mCharge.enabled = false;
         }
     }
 }

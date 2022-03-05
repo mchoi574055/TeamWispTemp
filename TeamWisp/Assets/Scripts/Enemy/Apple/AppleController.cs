@@ -15,15 +15,16 @@ namespace Enemy.Apple
         [Space] 
         [SerializeField] private int contactDamage;
         [SerializeField] private int chargeDamage;
+        [SerializeField] private float chaseRadius = 2f;
         
         [Space]
-        [SerializeField] private float chaseRadius = 2f;
         [SerializeField] private float timePerCharge = 3.0f;
         
         [Space]
         [SerializeField] private float chargeSpeed;
         [SerializeField] private float chargeDistance;
         [SerializeField] private float chargeAnticipationTime;
+        [SerializeField] private float chargeRecoveryTime;
         // Member Variables
         private Behaviours.FollowPath mFollowPath;
         private Behaviours.Chase mChase;
@@ -45,7 +46,7 @@ namespace Enemy.Apple
             mChase.Init(hero, walkSpeed);
 
             mCharge = gameObject.AddComponent<Behaviours.Attacks.Charge>();
-            mCharge.Init(chargeAnticipationTime, 
+            mCharge.Init(chargeAnticipationTime, chargeRecoveryTime, 
                 hero, chargeSpeed, chargeDistance);
         }
 
@@ -58,16 +59,14 @@ namespace Enemy.Apple
 
         private void OnTriggerEnter2D(Collider2D col)
         {
-            Debug.Log(col.tag);
-            if (col.CompareTag("Hero"))
             {
                 if (GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).IsName("Charge Action"))
                 {
-                    heroController.UpdateHealth(-chargeDamage);
+                    heroController.Damage(chargeDamage);
                 }
                 else
                 {
-                    heroController.UpdateHealth(-contactDamage);
+                    heroController.Damage(contactDamage);
                 }
             }
         }

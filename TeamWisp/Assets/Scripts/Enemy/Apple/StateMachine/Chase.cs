@@ -18,7 +18,8 @@ namespace Enemy.Apple.StateMachine
 
         // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
         public override void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
-        {appleController = animator.GetComponent<AppleController>();
+        {
+            appleController = animator.GetComponent<AppleController>();
             
             chargeCooldownTime = appleController.GetTimePerCharge() + Random.Range(-0.5f, 0.5f);
 

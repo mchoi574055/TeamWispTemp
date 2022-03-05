@@ -101,11 +101,14 @@ MonoBehaviour:
   path:
   - {fileID: 0}
   walkSpeed: 3
+  contactDamage: 1
+  chargeDamage: 3
   chaseRadius: 2.5
   timePerCharge: 3
   chargeSpeed: 10
   chargeDistance: 4
-  chargeAnticipationTime: 1
+  chargeAnticipationTime: 0.2
+  chargeRecoveryTime: 0
 --- !u!95 &9162416165813658725
 Animator:
   serializedVersion: 3
@@ -156,7 +159,7 @@ CircleCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
