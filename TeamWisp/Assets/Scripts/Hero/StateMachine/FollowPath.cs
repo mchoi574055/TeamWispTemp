@@ -17,6 +17,7 @@ namespace Hero.StateMachine
         public override void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
         {
             heroController = animator.GetComponent<HeroController>();
+            heroController.DisableAllBehaviours();
             
             followPath = animator.GetComponent<Behaviours.FollowPath>();
             followPath.enabled = true;
@@ -27,11 +28,15 @@ namespace Hero.StateMachine
         {
             animator.SetFloat(velocityX, followPath.GetDirection().x);
             animator.SetFloat(velocityY, followPath.GetDirection().y);
-            
-            float dist = Vector3.Distance(animator.transform.position, heroController.GetMainTarget().transform.position);
-            if (dist < heroController.GetChaseRadius())
+
+            if (heroController.GetMainTarget() != null)
             {
-                animator.Play(ChaseState);
+                float dist = Vector3.Distance(animator.transform.position,
+                    heroController.GetMainTarget().transform.position);
+                if (dist < heroController.GetChaseRadius())
+                {
+                    animator.Play(ChaseState);
+                }
             }
         }
 

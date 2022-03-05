@@ -5,23 +5,40 @@ using UnityEngine;
 
 public class EnemyHealth : MonoBehaviour
 {
-    [SerializeField] float Hitpoints;
-    [SerializeField] float MaxHitpoints = 5;
+    [SerializeField] private float invincibilityTime;
+    private bool hasIFrames = false;
+    
+    [SerializeField] int health;
+    [SerializeField] int maxHealth = 5;
     [SerializeField] HealthBar Healthbar;
     // Start is called before the first frame update
     void Start()
     {
-        Hitpoints = MaxHitpoints;
-        Healthbar.SetHealth(Hitpoints,MaxHitpoints);
+        health = maxHealth;
+        Healthbar.SetHealth(health,maxHealth);
     }
 
-    public void UpdateHealth(float damage)
+    public void Damage(int damage)
     {
-        Hitpoints += damage;
-        Healthbar.SetHealth(Hitpoints,MaxHitpoints);
-        if(Hitpoints <= 0)
+        if (hasIFrames) return;
+
+        hasIFrames = true;
+        
+        health -= damage;
+        Healthbar.SetHealth(health,maxHealth);
+        GetComponent<Animator>().Play("Stagger");
+        
+        StartCoroutine(StopIFrames());
+        
+        if(health <= 0)
         {
             Destroy(gameObject);
         }
+    }
+
+    IEnumerator StopIFrames()
+    {
+        yield return new WaitForSeconds(invincibilityTime);
+        hasIFrames = false;
     }
 }

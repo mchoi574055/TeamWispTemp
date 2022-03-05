@@ -23,6 +23,11 @@ namespace Behaviours.Attacks
             
             enabled = false;
         }
+
+        public void UpdateTarget(GameObject target)
+        {
+            mTarget = target;
+        }
         
         // Lifecycle
 

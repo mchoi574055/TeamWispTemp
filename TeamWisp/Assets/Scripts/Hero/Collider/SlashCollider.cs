@@ -6,10 +6,10 @@ namespace Hero.Collider
 {
     public class SlashCollider : MonoBehaviour
     {
-        [SerializeField] private GameObject upCollider;
-        [SerializeField] private GameObject leftCollider;
-        [SerializeField] private GameObject rightCollider;
-        [SerializeField] private GameObject downCollider;
+        [SerializeField] private Collider2D upCollider;
+        [SerializeField] private Collider2D leftCollider;
+        [SerializeField] private Collider2D rightCollider;
+        [SerializeField] private Collider2D downCollider;
         
         private bool active = false;
 
@@ -20,33 +20,33 @@ namespace Hero.Collider
             
             if (!state)
             {
-                upCollider.SetActive(false);
-                leftCollider.SetActive(false);
-                rightCollider.SetActive(false);
-                downCollider.SetActive(false);
+                upCollider.enabled = false;
+                leftCollider.enabled = false;
+                rightCollider.enabled = false;
+                downCollider.enabled = false;
             }
             else
             {
                 if (Mathf.Abs(direction.x) > Mathf.Abs(direction.y))
                 {
-                    if (Mathf.Abs(direction.x) >= 0)
+                    if (direction.x >= 0)
                     {
-                        rightCollider.SetActive(true);
+                        rightCollider.enabled = true;
                     }
                     else
                     {
-                        leftCollider.SetActive(true);
+                        leftCollider.enabled = true;
                     }
                 }
                 else
                 {
-                    if (Mathf.Abs(direction.y) >= 0)
+                    if (direction.y >= 0)
                     {
-                        upCollider.SetActive(true);
+                        upCollider.enabled = true;
                     }
                     else
                     {
-                        downCollider.SetActive(true);
+                        downCollider.enabled = true;
                     }
                 }
             }
@@ -55,6 +55,22 @@ namespace Hero.Collider
         public bool IsSlashActive()
         {
             return active;
+        }
+
+        private void OnTriggerEnter2D(Collider2D col)
+        {
+            
+        }
+
+        private void OnTriggerStay2D(Collider2D other)
+        {
+            if (other.CompareTag("Enemy"))
+            {
+                Vector3 knockbackDirection = (other.transform.position - transform.position).normalized;
+                other.transform.position += knockbackDirection * Time.deltaTime;
+                EnemyHealth enemyHealth = other.GetComponent<EnemyHealth>();
+                enemyHealth.Damage(1);
+            }
         }
     }
 }

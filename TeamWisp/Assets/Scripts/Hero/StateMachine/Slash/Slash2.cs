@@ -31,6 +31,11 @@ namespace Hero.StateMachine.Slash
             });
             mSlash.recoveryComplete.AddListener(() =>
             {
+                if (heroController.GetMainTarget() == null)
+                {
+                    animator.Play("Follow Path");
+                    return;
+                }
                 animator.Play(Slash3);
                 mSlash.enabled = false;
             });
@@ -57,8 +62,7 @@ namespace Hero.StateMachine.Slash
         // OnStateMachineExit is called when exiting a state machine via its Exit Node
         public override void OnStateMachineExit(Animator animator, int stateMachinePathHash)
         {
-            // animator.Play(ChaseState);
-            // mSlash.enabled = false;
+            
         }
     }
 }

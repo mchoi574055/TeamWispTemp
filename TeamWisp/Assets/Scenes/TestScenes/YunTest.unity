@@ -207,6 +207,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2256296584370015862, guid: 4c41f52d53442bb42b0bc888b96918c9, type: 3}
+      propertyPath: invincibilityTime
+      value: 0.41
+      objectReference: {fileID: 0}
+    - target: {fileID: 2739876323763769823, guid: 4c41f52d53442bb42b0bc888b96918c9, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2739876323763769823, guid: 4c41f52d53442bb42b0bc888b96918c9, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 9162416165813658724, guid: 4c41f52d53442bb42b0bc888b96918c9, type: 3}
       propertyPath: path.Array.data[0]
       value: 
@@ -8936,10 +8948,6 @@ PrefabInstance:
       propertyPath: mainTarget
       value: 
       objectReference: {fileID: 696944002}
-    - target: {fileID: 4114106628640649939, guid: 32f799d164397bb4a8b6b727a276a604, type: 3}
-      propertyPath: timePerAttack
-      value: 3
-      objectReference: {fileID: 0}
     - target: {fileID: 4114106628640649939, guid: 32f799d164397bb4a8b6b727a276a604, type: 3}
       propertyPath: path.Array.data[0]
       value: 

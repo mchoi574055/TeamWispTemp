@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using Hero;
 using UnityEngine;
 
@@ -7,6 +8,8 @@ namespace Enemy.Apple
     public class AppleController : MonoBehaviour
     {
         // Fields
+        [SerializeField] private EnemyHealth health;
+        
         [SerializeField] private Transform[] path;
         
         [Space]
@@ -55,20 +58,13 @@ namespace Enemy.Apple
         
         }
         
-        // Events
+        // Methods
 
-        private void OnTriggerEnter2D(Collider2D col)
+        public void DisableAllBehaviours()
         {
-            {
-                if (GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).IsName("Charge Action"))
-                {
-                    heroController.Damage(chargeDamage);
-                }
-                else
-                {
-                    heroController.Damage(contactDamage);
-                }
-            }
+            mFollowPath.enabled = false;
+            mChase.enabled = false;
+            mCharge.enabled = false;
         }
 
         // Getters and Setters
@@ -80,6 +76,16 @@ namespace Enemy.Apple
         public float GetTimePerCharge()
         {
             return timePerCharge;
+        }
+
+        public int GetChargeDamage()
+        {
+            return chargeDamage;
+        }
+
+        public int GetContactDamage()
+        {
+            return contactDamage;
         }
     }
 }

@@ -83,6 +83,10 @@ namespace Behaviours
         {
             return mDirection.magnitude > 0.1 ? mDirection.normalized : Vector3.zero;
         }
-        
+
+        public void UpdateTarget(GameObject target)
+        {
+            mTarget = target;
+        }
     }
 }

@@ -53,5 +53,11 @@ namespace Enemy.Apple.StateMachine
         {
             
         }
+
+        public override void OnStateMachineExit(Animator animator, int stateMachinePathHash)
+        { 
+            animator.Play(ChaseState);
+            mCharge.enabled = false;
+        }
     }
 }

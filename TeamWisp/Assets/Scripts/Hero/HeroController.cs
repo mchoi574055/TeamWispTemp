@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using Hero.Collider;
 using UnityEngine;
 
@@ -36,6 +37,8 @@ namespace Hero
         private Behaviours.Encircle encircle;
         private Behaviours.Attacks.Slash slash;
 
+        private Animator animator;
+
         void AddBehaviours()
         {
             followPath = gameObject.AddComponent<Behaviours.FollowPath>();
@@ -54,35 +57,61 @@ namespace Hero
         // Lifecycle
         public void Start()
         {
+            animator = GetComponent<Animator>();
+            
             if(!targets.Contains(mainTarget)) targets.Add(mainTarget);
             
             AddBehaviours();
         }
-        
-        // Events
 
-        private void OnTriggerEnter2D(Collider2D col)
+        public void Update()
         {
-            if (col.CompareTag("Enemy") && !HasIFrames())
+            if (mainTarget == null)
             {
-                GetComponent<Animator>().Play("IFrames");
-                hitbox.enabled = false;
-                StartCoroutine(StopIFrames());
+                targets.RemoveAll(target => target == null);
+                if (targets.Count > 0)
+                {
+                    mainTarget = targets.First();
+                    UpdateTarget();
+                }
             }
         }
 
         // Methods
 
+        public void DisableAllBehaviours()
+        {
+            followPath.enabled = false;
+            chase.enabled = false;
+            encircle.enabled = false;
+            slash.enabled = false;
+        }
+
+        public void UpdateTarget()
+        {
+            chase.UpdateTarget(mainTarget);
+            encircle.UpdateTarget(mainTarget);
+            slash.UpdateTarget(mainTarget);
+        }
+
         IEnumerator StopIFrames()
         {
             yield return new WaitForSeconds(invincibilityTime);
-            GetComponent<Animator>().Play("Normal");
+            animator.Play("Normal");
             hitbox.enabled = true;
         }
         
         public void Damage(int damage)
         {
             if (HasIFrames()) return;
+            
+            DisableAllBehaviours();
+            slashCollider.ToggleCollider(false, Vector3.zero);
+            animator.Play("Stagger");
+            
+            animator.Play("IFrames");
+            hitbox.enabled = false;
+            StartCoroutine(StopIFrames());
             
             heroData.health -= damage;
 
@@ -107,7 +136,7 @@ namespace Hero
         // Getter and Setter
         public bool HasIFrames()
         {
-            return GetComponent<Animator>().GetCurrentAnimatorStateInfo(1).IsName("IFrames");
+            return !hitbox.enabled;
         }
         
         public float GetChaseRadius()
