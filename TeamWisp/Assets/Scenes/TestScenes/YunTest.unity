@@ -207,21 +207,17 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 696944003, guid: 4c41f52d53442bb42b0bc888b96918c9, type: 3}
-      propertyPath: m_IsTrigger
-      value: 1
+    - target: {fileID: 2256296584370015862, guid: 4c41f52d53442bb42b0bc888b96918c9, type: 3}
+      propertyPath: invincibilityTime
+      value: 0.41
       objectReference: {fileID: 0}
-    - target: {fileID: 696944003, guid: 4c41f52d53442bb42b0bc888b96918c9, type: 3}
-      propertyPath: m_UsedByEffector
+    - target: {fileID: 2739876323763769823, guid: 4c41f52d53442bb42b0bc888b96918c9, type: 3}
+      propertyPath: m_AnchorMax.x
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 9162416165813658724, guid: 4c41f52d53442bb42b0bc888b96918c9, type: 3}
-      propertyPath: chargeDamage
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 9162416165813658724, guid: 4c41f52d53442bb42b0bc888b96918c9, type: 3}
-      propertyPath: contactDamage
-      value: 1
+    - target: {fileID: 2739876323763769823, guid: 4c41f52d53442bb42b0bc888b96918c9, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9162416165813658724, guid: 4c41f52d53442bb42b0bc888b96918c9, type: 3}
       propertyPath: path.Array.data[0]
@@ -905,7 +901,75 @@ MonoBehaviour:
   m_ControlsChangedEvent:
     m_PersistentCalls:
       m_Calls: []
-  m_ActionEvents: []
+  m_ActionEvents:
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 3b17aa96-c89d-40a8-b992-073566216ad0
+    m_ActionName: Player/Revive[/Keyboard/f]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 8d08febd-aa32-4806-8582-f51c341cb56e
+    m_ActionName: Player/TestKey1[/Keyboard/b]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 787b23d5-31c5-4e14-a07f-1b0714629fc9
+    m_ActionName: Player/Pause[/Keyboard/escape]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: a14d686e-700d-41ef-b603-22e14b4dd356
+    m_ActionName: Player/AbilityOne[/Keyboard/j]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: ff06ba6c-af4f-4bdf-85ae-b4ae28f95f54
+    m_ActionName: UI/Navigate[/Keyboard/w,/Keyboard/upArrow,/Keyboard/s,/Keyboard/downArrow,/Keyboard/a,/Keyboard/leftArrow,/Keyboard/d,/Keyboard/rightArrow]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: dae5f5a5-9d4f-4086-8f72-b85ec9b302c0
+    m_ActionName: UI/Submit[/Keyboard/enter]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 9b6d150d-264f-4d6d-9e78-a11546d189d6
+    m_ActionName: UI/Cancel[/Keyboard/escape]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: eab1772a-36b4-488d-a699-dd38f2e876a8
+    m_ActionName: UI/Point[/Mouse/position]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 1e010297-5c89-4953-a82d-87575519672b
+    m_ActionName: UI/Click[/Mouse/leftButton]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 379720af-0337-4150-ba54-f56737ca11e1
+    m_ActionName: UI/ScrollWheel[/Mouse/scroll]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 461bf1b6-c44b-445c-8e4c-7f0a1ecf1b2d
+    m_ActionName: UI/MiddleClick[/Mouse/middleButton]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 7fcc9af9-3617-47d4-a619-4d32943e1697
+    m_ActionName: UI/RightClick[/Mouse/rightButton]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 4076bd24-51c2-4356-8dbd-30982d4aa9c9
+    m_ActionName: UI/TrackedDevicePosition
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 34150368-7db3-4429-b467-eb170bcb479e
+    m_ActionName: UI/TrackedDeviceOrientation
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: ebe8de56-2997-4029-8d02-b89c40dd301f
+    m_ActionName: TestPlayer/Save[/Keyboard/s]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 2e283e26-12bf-4174-a4dc-d8e4a294a2fb
+    m_ActionName: TestPlayer/Load[/Keyboard/l]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: a264233d-a890-49d9-9f2f-42cef7ac3e2a
+    m_ActionName: TestPlayer/LevelUp[/Keyboard/p]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
@@ -924,6 +988,7 @@ Transform:
   m_Children:
   - {fileID: 807432535}
   - {fileID: 1842559921}
+  - {fileID: 1281719572}
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1329,6 +1394,52 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
+--- !u!1 &1281719571
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1281719572}
+  - component: {fileID: 1281719573}
+  m_Layer: 0
+  m_Name: Wisp
+  m_TagString: Player
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1281719572
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1281719571}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 699934584}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1281719573
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1281719571}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 50a3fa955f199d646a2965749ac13c09, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  abilityOneUsed:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &1398469473
 GameObject:
   m_ObjectHideFlags: 0
@@ -8900,21 +9011,17 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 699934584}
     m_Modifications:
-    - target: {fileID: 4114106628640649932, guid: 32f799d164397bb4a8b6b727a276a604, type: 3}
-      propertyPath: m_Color.a
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 4114106628640649933, guid: 32f799d164397bb4a8b6b727a276a604, type: 3}
       propertyPath: m_RootOrder
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4114106628640649933, guid: 32f799d164397bb4a8b6b727a276a604, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 6.31
+      value: 6.6
       objectReference: {fileID: 0}
     - target: {fileID: 4114106628640649933, guid: 32f799d164397bb4a8b6b727a276a604, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 3.5
+      value: 2.8
       objectReference: {fileID: 0}
     - target: {fileID: 4114106628640649933, guid: 32f799d164397bb4a8b6b727a276a604, type: 3}
       propertyPath: m_LocalPosition.z
@@ -8951,10 +9058,6 @@ PrefabInstance:
     - target: {fileID: 4114106628640649937, guid: 32f799d164397bb4a8b6b727a276a604, type: 3}
       propertyPath: m_Name
       value: Hero
-      objectReference: {fileID: 0}
-    - target: {fileID: 4114106628640649939, guid: 32f799d164397bb4a8b6b727a276a604, type: 3}
-      propertyPath: walkSpeed
-      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 4114106628640649939, guid: 32f799d164397bb4a8b6b727a276a604, type: 3}
       propertyPath: mainTarget

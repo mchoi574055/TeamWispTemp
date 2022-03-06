@@ -14,34 +14,39 @@ namespace Behaviours.Attacks
 
         private Vector3 mEndPosition;
 
-        public void Init(float anticipationDuration, GameObject target, float speed, float distance)
+        public void Init(float anticipationDuration, float recoveryDuration, GameObject target, float speed, float distance)
         {
-            base.Init(anticipationDuration,  speed != 0 ? distance/speed : 0);
+            base.Init(anticipationDuration,  speed != 0 ? distance/speed : 0, recoveryDuration);
             mTarget = target;
             mSpeed = speed;
             mDistance = distance;
             
             enabled = false;
         }
+
+        public void UpdateTarget(GameObject target)
+        {
+            mTarget = target;
+        }
         
         // Lifecycle
 
-        // protected override void OnStart()
-        // {
-        //     base.OnStart();
-        // }
+        protected override void OnStart()
+        {
+            base.OnStart();
+            mDirection = (mTarget.transform.position - transform.position);
+            mEndPosition = transform.position + (mDirection.normalized * mDistance);
+        }
         
         // protected override void Anticipation()
         // {
         //     base.Anticipation();
         // }
         
-        protected override void OnAnticipationComplete()
-        {
-            base.OnAnticipationComplete();
-            mDirection = (mTarget.transform.position - transform.position);
-            mEndPosition = transform.position + (mDirection.normalized * mDistance);
-        }
+        // protected override void OnAnticipationComplete()
+        // {
+        //     base.OnAnticipationComplete();
+        // }
 
         protected override void Action()
         {

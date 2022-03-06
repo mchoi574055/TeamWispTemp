@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using Hero;
 using UnityEngine;
 
@@ -7,6 +8,8 @@ namespace Enemy.Apple
     public class AppleController : MonoBehaviour
     {
         // Fields
+        [SerializeField] private EnemyHealth health;
+        
         [SerializeField] private Transform[] path;
         
         [Space]
@@ -15,19 +18,21 @@ namespace Enemy.Apple
         [Space] 
         [SerializeField] private int contactDamage;
         [SerializeField] private int chargeDamage;
+        [SerializeField] private float chaseRadius = 2f;
         
         [Space]
-        [SerializeField] private float chaseRadius = 2f;
         [SerializeField] private float timePerCharge = 3.0f;
         
         [Space]
         [SerializeField] private float chargeSpeed;
         [SerializeField] private float chargeDistance;
         [SerializeField] private float chargeAnticipationTime;
+        [SerializeField] private float chargeRecoveryTime;
         // Member Variables
         private Behaviours.FollowPath mFollowPath;
         private Behaviours.Chase mChase;
         private Behaviours.Attacks.Charge mCharge;
+        private Behaviours.BackOff mBackOff;
 
         private GameObject hero;
         private HeroController heroController;
@@ -45,8 +50,11 @@ namespace Enemy.Apple
             mChase.Init(hero, walkSpeed);
 
             mCharge = gameObject.AddComponent<Behaviours.Attacks.Charge>();
-            mCharge.Init(chargeAnticipationTime, 
+            mCharge.Init(chargeAnticipationTime, chargeRecoveryTime, 
                 hero, chargeSpeed, chargeDistance);
+
+            mBackOff = gameObject.AddComponent<Behaviours.BackOff>();
+            mBackOff.Init(hero, walkSpeed);
         }
 
         void Update()
@@ -54,22 +62,13 @@ namespace Enemy.Apple
         
         }
         
-        // Events
+        // Methods
 
-        private void OnTriggerEnter2D(Collider2D col)
+        public void DisableAllBehaviours()
         {
-            Debug.Log(col.tag);
-            if (col.CompareTag("Hero"))
-            {
-                if (GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).IsName("Charge Action"))
-                {
-                    heroController.UpdateHealth(-chargeDamage);
-                }
-                else
-                {
-                    heroController.UpdateHealth(-contactDamage);
-                }
-            }
+            mFollowPath.enabled = false;
+            mChase.enabled = false;
+            mCharge.enabled = false;
         }
 
         // Getters and Setters
@@ -81,6 +80,16 @@ namespace Enemy.Apple
         public float GetTimePerCharge()
         {
             return timePerCharge;
+        }
+
+        public int GetChargeDamage()
+        {
+            return chargeDamage;
+        }
+
+        public int GetContactDamage()
+        {
+            return contactDamage;
         }
     }
 }

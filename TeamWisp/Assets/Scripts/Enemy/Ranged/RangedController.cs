@@ -34,7 +34,7 @@ namespace Enemy.Ranged
             mChase.Init(hero, walkSpeed);
 
             mEncircle = gameObject.AddComponent<Behaviours.Encircle>();
-            mEncircle.Init(hero, walkSpeed);
+            mEncircle.Init(hero, walkSpeed, shootRange);
 
             mShoot = gameObject.AddComponent<Behaviours.Attacks.Shoot>();
             mShoot.Init(projectile, startTimePerShot, shootSpeed, shootRange);

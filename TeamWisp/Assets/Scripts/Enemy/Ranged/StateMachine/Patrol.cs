@@ -17,8 +17,6 @@ namespace Enemy.Ranged.StateMachine
         // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
         public override void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
         {
-            Debug.Log("Patrolling!");
-
             rangedController = animator.GetComponent<RangedController>();
         
             hero = GameObject.FindWithTag("Hero");
@@ -45,7 +43,6 @@ namespace Enemy.Ranged.StateMachine
         // OnStateExit is called when a transition ends and the state machine finishes evaluating this state
         public override void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
         {
-            Debug.Log("Exit Patrolling!");
             mFollowPath.enabled = false;
         }
     }

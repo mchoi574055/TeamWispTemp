@@ -6,9 +6,11 @@ namespace Hero.StateMachine
     {
         private HeroController heroController;
         
-        private const string ChaseState = "Chase";
+        private const string SlashState = "Slash";
         
         private Behaviours.Encircle encircle;
+        
+        private float chargeCooldownTime;
         
         private static readonly int velocityX = Animator.StringToHash("VelocityX");
         private static readonly int velocityY = Animator.StringToHash("VelocityY");
@@ -17,6 +19,8 @@ namespace Hero.StateMachine
         public override void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
         {
             heroController = animator.GetComponent<HeroController>();
+
+            chargeCooldownTime = heroController.GetTimePerAttack();
             
             encircle = animator.GetComponent<Behaviours.Encircle>();
             encircle.enabled = true;
@@ -25,13 +29,20 @@ namespace Hero.StateMachine
         // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
         public override void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
         {
+            if (heroController.GetMainTarget() == null)
+            {
+                animator.Play("Follow Path");
+                return;
+            }
+            
             animator.SetFloat(velocityX, encircle.GetDirection().x);
             animator.SetFloat(velocityY, encircle.GetDirection().y);
             
-            float dist = Vector3.Distance(animator.transform.position, heroController.GetMainTarget().transform.position);
-            if (dist > heroController.GetEncircleRadius())
+            chargeCooldownTime -= Time.deltaTime;
+            if(chargeCooldownTime <= 0)
             {
-                animator.Play(ChaseState);
+                animator.Play(SlashState);
+                chargeCooldownTime = heroController.GetTimePerAttack();
             }
         }
 
