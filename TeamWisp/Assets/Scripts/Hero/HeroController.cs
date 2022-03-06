@@ -20,9 +20,11 @@ namespace Hero
         [SerializeField] private float walkSpeed;
         
         // Combat
-        [SerializeField] private Collider2D hitbox;
+        // TODO Make getter methods
+        [SerializeField] public Collider2D hitbox;
         [SerializeField] private float timePerAttack;
         [SerializeField] private SlashCollider slashCollider;
+        [SerializeField] private SuperSlashCollider superSlashCollider;
         [SerializeField] private float invincibilityTime;
         
         [SerializeField] private GameObject mainTarget;
@@ -35,7 +37,9 @@ namespace Hero
         private Behaviours.FollowPath followPath;
         private Behaviours.Chase chase;
         private Behaviours.Encircle encircle;
-        private Behaviours.Attacks.Slash slash;
+        // TODO Make getter methods
+        public Behaviours.Attacks.Slash slash;
+        public Behaviours.Attacks.Slash superSlash;
 
         private Animator animator;
 
@@ -51,7 +55,10 @@ namespace Hero
             encircle.Init(mainTarget, walkSpeed, encircleRadius);
 
             slash = gameObject.AddComponent<Behaviours.Attacks.Slash>();
-            slash.Init(0.1f, 0.25f, 0.1f, slashCollider, mainTarget);
+            slash.Init(0.1f, 0.25f, 0.1f, slashCollider, mainTarget, 0.1f);
+
+            superSlash = gameObject.AddComponent<Behaviours.Attacks.Slash>();
+            superSlash.Init(0.1f, 0.25f, 0.1f, superSlashCollider, mainTarget, 4f);
         }
         
         // Lifecycle

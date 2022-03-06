@@ -13,13 +13,17 @@ namespace Hero.StateMachine.Slash
         private const string Slash3 = "Slash3";
 
         private Behaviours.Attacks.Slash mSlash;
+        
+        private static readonly int velocityX = Animator.StringToHash("VelocityX");
+        private static readonly int velocityY = Animator.StringToHash("VelocityY");
 
         // OnStateMachineEnter is called when entering a state machine via its Entry Node
         public override void OnStateMachineEnter(Animator animator, int stateMachinePathHash)
         {
             heroController = animator.GetComponent<HeroController>();
             
-            mSlash = animator.GetComponent<Behaviours.Attacks.Slash>();
+            mSlash = heroController.slash;
+            mSlash.SetDirection(new Vector2(animator.GetFloat(velocityX), animator.GetFloat(velocityY)));
             mSlash.enabled = true;
             mSlash.anticipationComplete.AddListener(() =>
             {
@@ -34,6 +38,7 @@ namespace Hero.StateMachine.Slash
                 if (heroController.GetMainTarget() == null)
                 {
                     animator.Play("Follow Path");
+                    mSlash.enabled = false;
                     return;
                 }
                 animator.Play(Slash3);

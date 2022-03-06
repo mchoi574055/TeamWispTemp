@@ -32,6 +32,7 @@ namespace Enemy.Apple
         private Behaviours.FollowPath mFollowPath;
         private Behaviours.Chase mChase;
         private Behaviours.Attacks.Charge mCharge;
+        private Behaviours.BackOff mBackOff;
 
         private GameObject hero;
         private HeroController heroController;
@@ -51,6 +52,9 @@ namespace Enemy.Apple
             mCharge = gameObject.AddComponent<Behaviours.Attacks.Charge>();
             mCharge.Init(chargeAnticipationTime, chargeRecoveryTime, 
                 hero, chargeSpeed, chargeDistance);
+
+            mBackOff = gameObject.AddComponent<Behaviours.BackOff>();
+            mBackOff.Init(hero, walkSpeed);
         }
 
         void Update()

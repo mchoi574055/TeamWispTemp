@@ -1,55 +1,56 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using Enemy.Apple;
 using Hero;
 using UnityEngine;
 
-public class AppleCollider : MonoBehaviour
+namespace Enemy.Apple.Collider
 {
-    private AppleController appleController;
-    
-    private GameObject hero;
-    private HeroController heroController;
-    
-    // Start is called before the first frame update
-    void Start()
+    public class AppleCollider : MonoBehaviour
     {
-        hero = GameObject.FindGameObjectWithTag("Hero");
-        heroController = hero.GetComponent<HeroController>();
-
-        appleController = GetComponentInParent<AppleController>();
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+        private AppleController appleController;
     
-    // Events
-
-    private void OnTriggerEnter2D(Collider2D col)
-    {
-        if (col.CompareTag("Hero"))
+        private GameObject hero;
+        private HeroController heroController;
+    
+        // Start is called before the first frame update
+        void Start()
         {
-            if (GetComponentInParent<Animator>().GetCurrentAnimatorStateInfo(0).IsName("Charge Action"))
+            hero = GameObject.FindGameObjectWithTag("Hero");
+            heroController = hero.GetComponent<HeroController>();
+
+            appleController = GetComponentInParent<AppleController>();
+        }
+
+        // Update is called once per frame
+        void Update()
+        {
+        
+        }
+    
+        // Events
+
+        private void OnTriggerEnter2D(Collider2D col)
+        {
+            if (col.CompareTag("Hero"))
             {
-                heroController.Damage(appleController.GetChargeDamage());
-            }
-            else
-            {
-                heroController.Damage(appleController.GetContactDamage());
+                if (GetComponentInParent<Animator>().GetCurrentAnimatorStateInfo(0).IsName("Charge Action"))
+                {
+                    heroController.Damage(appleController.GetChargeDamage());
+                }
+                else
+                {
+                    heroController.Damage(appleController.GetContactDamage());
+                }
             }
         }
-    }
 
-    private void OnTriggerStay2D(Collider2D other)
-    {
-        if (other.CompareTag("Hero"))
+        private void OnTriggerStay2D(Collider2D other)
         {
-            Vector3 knockbackDirection = (other.transform.position - transform.position).normalized;
-            other.transform.position += knockbackDirection * Time.deltaTime;
+            if (other.CompareTag("Hero"))
+            {
+                Vector3 knockbackDirection = (other.transform.position - transform.position).normalized;
+                other.transform.position += knockbackDirection * Time.deltaTime;
+                
+                GetComponentInParent<Animator>().Play("Back Off");
+            }
         }
     }
 }

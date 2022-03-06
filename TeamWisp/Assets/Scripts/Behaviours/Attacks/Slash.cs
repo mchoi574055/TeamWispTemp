@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using Behaviours.Attacks;
+using Hero;
 using Hero.Collider;
 using UnityEngine;
 
@@ -9,16 +10,20 @@ namespace Behaviours.Attacks
     public class Slash : AttackBehavior
     {
         // Fields
-        private SlashCollider mSlashCollider;
+        private HeroAttackCollider mSlashCollider;
         private GameObject mTarget;
     
         // Member Variables
         private Vector3 mDirection = Vector3.zero;
+        private float mDistance;
 
-        public void Init(float anticipationDuration, float actionDuration, float recoveryDuration, SlashCollider slashCollider, GameObject target)
+        private Vector3 mEndPosition;
+
+        public void Init(float anticipationDuration, float actionDuration, float recoveryDuration, HeroAttackCollider slashCollider, GameObject target, float distance)
         {
             base.Init(anticipationDuration, actionDuration, recoveryDuration);
             mTarget = target;
+            mDistance = distance;
 
             mSlashCollider = slashCollider;
 
@@ -35,7 +40,7 @@ namespace Behaviours.Attacks
         protected override void OnStart()
         {
             base.OnStart();
-            mDirection = (mTarget.transform.position - transform.position);
+            mEndPosition = transform.position + (mDirection.normalized * mDistance);
         }
     
         // protected override void Anticipation()
@@ -50,10 +55,13 @@ namespace Behaviours.Attacks
             mSlashCollider.ToggleCollider(true, mDirection);
         }
 
-        // protected override void Action()
-        // {
-        //     base.Action();
-        // }
+        protected override void Action()
+        {
+            base.Action();
+            transform.position = Vector3.MoveTowards(transform.position, 
+                mEndPosition, 
+                mDistance/mActionDuration * Time.deltaTime);
+        }
 
         protected override void OnActionComplete()
         {
@@ -76,6 +84,11 @@ namespace Behaviours.Attacks
         public Vector3 GetDirection()
         {
             return mDirection.magnitude > 0.1 ? mDirection.normalized : Vector3.zero;
+        }
+
+        public void SetDirection(Vector2 direction)
+        {
+            mDirection = direction;
         }
     }
 }

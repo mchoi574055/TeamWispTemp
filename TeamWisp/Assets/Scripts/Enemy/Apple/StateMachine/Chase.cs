@@ -7,7 +7,6 @@ namespace Enemy.Apple.StateMachine
         private AppleController appleController;
         
         private const string ChargeState = "Charge";
-        private const string PatrolState = "Patrol";
         
         private Behaviours.Chase mChase;
         
