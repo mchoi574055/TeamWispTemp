@@ -27,6 +27,12 @@ namespace Hero.StateMachine
         // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
         public override void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
         {
+            if (heroController.GetMainTarget() == null)
+            {
+                animator.Play("Follow Path");
+                return;
+            }
+            
             animator.SetFloat(velocityX, mChase.GetDirection().x);
             animator.SetFloat(velocityY, mChase.GetDirection().y);
             

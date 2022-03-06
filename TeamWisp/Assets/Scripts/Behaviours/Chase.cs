@@ -1,3 +1,4 @@
+using System;
 using Pathfinding;
 using UnityEngine;
 
@@ -32,7 +33,10 @@ namespace Behaviours
         void Start()
         {
             seeker = GetComponent<Seeker>();
-            
+        }
+
+        private void OnEnable()
+        {
             InvokeRepeating(nameof(UpdatePath), 0f, 0.5f);
         }
 
@@ -55,7 +59,12 @@ namespace Behaviours
                 currentWaypoint++;
             }
         }
-        
+
+        private void OnDisable()
+        {
+            CancelInvoke();
+        }
+
         // Methods
 
         private void UpdatePath() 
@@ -74,6 +83,11 @@ namespace Behaviours
         public Vector3 GetDirection()
         {
             return mDirection.magnitude > 0.1 ? mDirection.normalized : Vector3.zero;
+        }
+
+        public void UpdateTarget(GameObject target)
+        {
+            mTarget = target;
         }
     }
 }

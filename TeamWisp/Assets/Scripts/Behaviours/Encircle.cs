@@ -17,10 +17,11 @@ namespace Behaviours
             
         private Vector3 mDirection = Vector3.zero;
 
-        public void Init(GameObject target, float speed)
+        public void Init(GameObject target, float speed, float encircleRadius)
         {
             mTarget = target;
             mSpeed = speed;
+            mEncircleRadius = encircleRadius;
 
             initialized = true;
             enabled = false;
@@ -31,7 +32,6 @@ namespace Behaviours
         {
             if (!initialized) return;
             
-            mEncircleRadius = Vector3.Distance(transform.position, mTarget.transform.position);
             mEncirclePos = Mathf.Deg2Rad * -Vector3.SignedAngle(transform.position - mTarget.transform.position, Vector3.right, Vector3.forward) * mEncircleRadius;
         }
 
@@ -83,6 +83,10 @@ namespace Behaviours
         {
             return mDirection.magnitude > 0.1 ? mDirection.normalized : Vector3.zero;
         }
-        
+
+        public void UpdateTarget(GameObject target)
+        {
+            mTarget = target;
+        }
     }
 }

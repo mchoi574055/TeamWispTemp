@@ -58,7 +58,7 @@ namespace Behaviours
             }
             else
             {
-                mDirection = (path.vectorPath[currentWaypoint] - transform.position);
+                mDirection = (path.vectorPath[currentWaypoint] - transform.position).normalized;
                 
                 transform.position = Vector2.MoveTowards(transform.position,
                                     path.vectorPath[currentWaypoint],

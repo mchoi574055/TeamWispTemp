@@ -1,6 +1,8 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
+using Hero.Collider;
 using UnityEngine;
 
 
@@ -18,7 +20,11 @@ namespace Hero
         [SerializeField] private float walkSpeed;
         
         // Combat
-        [SerializeField] private Collider2D hitbox;
+        // TODO Make getter methods
+        [SerializeField] public Collider2D hitbox;
+        [SerializeField] private float timePerAttack;
+        [SerializeField] private SlashCollider slashCollider;
+        [SerializeField] private SuperSlashCollider superSlashCollider;
         [SerializeField] private float invincibilityTime;
         
         [SerializeField] private GameObject mainTarget;
@@ -31,6 +37,11 @@ namespace Hero
         private Behaviours.FollowPath followPath;
         private Behaviours.Chase chase;
         private Behaviours.Encircle encircle;
+        // TODO Make getter methods
+        public Behaviours.Attacks.Slash slash;
+        public Behaviours.Attacks.Slash superSlash;
+
+        private Animator animator;
 
         void AddBehaviours()
         {
@@ -41,50 +52,100 @@ namespace Hero
             chase.Init(mainTarget, walkSpeed);
             
             encircle = gameObject.AddComponent<Behaviours.Encircle>();
-            encircle.Init(mainTarget, walkSpeed);
+            encircle.Init(mainTarget, walkSpeed, encircleRadius);
+
+            slash = gameObject.AddComponent<Behaviours.Attacks.Slash>();
+            slash.Init(0.1f, 0.25f, 0.1f, slashCollider, mainTarget, 0.1f);
+
+            superSlash = gameObject.AddComponent<Behaviours.Attacks.Slash>();
+            superSlash.Init(0.1f, 0.25f, 0.1f, superSlashCollider, mainTarget, 4f);
         }
         
         // Lifecycle
         public void Start()
         {
+            animator = GetComponent<Animator>();
+            
             if(!targets.Contains(mainTarget)) targets.Add(mainTarget);
             
             AddBehaviours();
         }
-        
-        // Events
 
-        private void OnTriggerEnter2D(Collider2D col)
+        public void Update()
         {
-            if (col.CompareTag("Enemy"))
+            if (mainTarget == null)
             {
-                GetComponent<Animator>().Play("IFrames");
-                hitbox.enabled = false;
-                StartCoroutine(StopIFrames());
+                targets.RemoveAll(target => target == null);
+                if (targets.Count > 0)
+                {
+                    mainTarget = targets.First();
+                    UpdateTarget();
+                }
             }
         }
 
         // Methods
 
+        public void DisableAllBehaviours()
+        {
+            followPath.enabled = false;
+            chase.enabled = false;
+            encircle.enabled = false;
+            slash.enabled = false;
+        }
+
+        public void UpdateTarget()
+        {
+            chase.UpdateTarget(mainTarget);
+            encircle.UpdateTarget(mainTarget);
+            slash.UpdateTarget(mainTarget);
+        }
+
         IEnumerator StopIFrames()
         {
             yield return new WaitForSeconds(invincibilityTime);
-            GetComponent<Animator>().Play("Normal");
+            animator.Play("Normal");
             hitbox.enabled = true;
         }
         
-        public void UpdateHealth(int mod){
-            heroData.health += mod;
+        public void Damage(int damage)
+        {
+            if (HasIFrames()) return;
+            
+            DisableAllBehaviours();
+            slashCollider.ToggleCollider(false, Vector3.zero);
+            animator.Play("Stagger");
+            
+            animator.Play("IFrames");
+            hitbox.enabled = false;
+            StartCoroutine(StopIFrames());
+            
+            heroData.health -= damage;
 
             if(heroData.health > heroData.maxHealth){
                 heroData.health = heroData.maxHealth;
             } else if (heroData.health <= 0){
                 heroData.health = 0;
-                Debug.Log("Hero Dead");
             }
+        }
+
+        // Saving
+        public SaveData.HeroData GetHeroData()
+        {
+            return heroData;
+        }
+
+        public void LoadHero(SaveData.HeroData heroData)
+        {
+            this.heroData = heroData;
         }
         
         // Getter and Setter
+        public bool HasIFrames()
+        {
+            return !hitbox.enabled;
+        }
+        
         public float GetChaseRadius()
         {
             return chaseRadius;
@@ -105,15 +166,9 @@ namespace Hero
             return targets;
         }
 
-        // Saving
-        public SaveData.HeroData GetHeroData()
+        public float GetTimePerAttack()
         {
-            return heroData;
-        }
-
-        public void LoadHero(SaveData.HeroData heroData)
-        {
-            this.heroData = heroData;
+            return timePerAttack;
         }
     }
 }

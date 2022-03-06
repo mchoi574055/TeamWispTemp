@@ -14,7 +14,7 @@ namespace Behaviours.Attacks
         private bool mShot;
         public void Init(Projectile projectile, float startTimePerShot, float speed, float range)
         {
-            base.Init(startTimePerShot, 0);
+            base.Init(startTimePerShot, 0, 0);
             mProjectile = projectile;
             mSpeed = speed;
             mRange = range;

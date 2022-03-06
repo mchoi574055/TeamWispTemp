@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="AudioFile" id="{92f1d033-2d3c-4de0-b3bb-bf07eb4003b8}">
+		<property name="assetPath">
+			<value>aud_chomp.wav</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>44.0999985</value>
+		</property>
+		<property name="channelCount">
+			<value>1</value>
+		</property>
+		<property name="length">
+			<value>0.5050340136054422</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{da3579ed-6521-4893-8726-42398c238949}</destination>
+		</relationship>
+	</object>
+</objects>

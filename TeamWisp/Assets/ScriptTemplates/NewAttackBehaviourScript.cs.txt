@@ -1,0 +1,63 @@
+using System.Collections;
+using System.Collections.Generic;
+using Behaviours.Attacks;
+using UnityEngine;
+
+public class #SCRIPTNAME# : AttackBehavior
+{
+    // Fields
+    
+    // Member Variables
+    // private Vector3 mDirection = Vector3.zero;
+    
+    
+    
+    public void Init()
+    {
+        // TODO Insert anticipation and action duration
+        base.Init(0, 0);
+    }
+    
+    // Lifecycle
+    
+    // protected override void OnStart()
+    // {
+    //     base.OnStart();
+    // }
+    
+    // protected override void Anticipation()
+    // {
+    //     base.Anticipation();
+    // }
+    
+    // protected override void OnAnticipationComplete()
+    // {
+    //     base.OnAnticipationComplete();
+    // }
+
+    // protected override void Action()
+    // {
+    //     base.Action();
+    // }
+
+    // protected override void OnActionComplete()
+    // {
+    //     base.OnActionComplete();
+    // }
+
+    // protected override void Recovery()
+    // {
+    //     base.Recovery();
+    // }
+
+    // protected override void OnComplete()
+    // {
+    //     base.OnComplete();
+    // }
+    
+    // Getters and Setters
+    // public Vector3 GetDirection()
+    // {
+    //     return mDirection.magnitude > 0.1 ? mDirection.normalized : Vector3.zero;
+    // }
+}

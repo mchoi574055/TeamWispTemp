@@ -17,8 +17,6 @@ namespace Enemy.Ranged.StateMachine
         // OnStateMachineEnter is called when entering a state machine via its Entry Node
         public override void OnStateMachineEnter(Animator animator, int stateMachinePathHash)
         {
-            Debug.Log("Shooting!");
-            
             rangedController = animator.GetComponent<RangedController>();
             
             mShoot = animator.GetComponent<Behaviours.Attacks.Shoot>();

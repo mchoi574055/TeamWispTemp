@@ -10,7 +10,8 @@ namespace Behaviours.Attacks
         {
             Anticipation,
             Action,
-            Recovery
+            Recovery,
+            Complete
         }
         
         private bool initialized = false;
@@ -18,18 +19,22 @@ namespace Behaviours.Attacks
         // Fields
         protected float mAnticipationDuration;
         protected float mActionDuration;
+        protected float mRecoveryDuration;
 
         // Member Variables
         public UnityEvent anticipationComplete;
         public UnityEvent actionComplete;
+        public UnityEvent recoveryComplete;
         protected State mState = State.Anticipation;
         protected float mAnticipationTimer;
         protected float mActionTimer;
+        protected float mRecoveryTimer;
 
-        protected void Init(float anticipationDuration, float actionDuration)
+        protected void Init(float anticipationDuration, float actionDuration, float recoveryDuration)
         {
             mAnticipationDuration = anticipationDuration;
             mActionDuration = actionDuration;
+            mRecoveryDuration = recoveryDuration;
 
             initialized = true;
         }
@@ -39,6 +44,7 @@ namespace Behaviours.Attacks
         {
             if (anticipationComplete == null) anticipationComplete = new UnityEvent();
             if (actionComplete == null) actionComplete = new UnityEvent();
+            if (recoveryComplete == null) recoveryComplete = new UnityEvent();
         }
 
         protected void OnEnable()
@@ -77,7 +83,13 @@ namespace Behaviours.Attacks
                     }
                     break;
                 case State.Recovery:
+                    mRecoveryTimer -= Time.deltaTime;
                     Recovery();
+                    if (mRecoveryTimer <= 0)
+                    {
+                        mState = State.Complete;
+                        recoveryComplete.Invoke();
+                    }
                     break;
             }
         }
@@ -89,9 +101,11 @@ namespace Behaviours.Attacks
             anticipationComplete.AddListener(OnAnticipationComplete);
             actionComplete.AddListener(OnActionComplete);
             
-            mState = State.Anticipation;
             mAnticipationTimer = mAnticipationDuration;
             mActionTimer = mActionDuration;
+            mRecoveryTimer = mRecoveryDuration;
+            
+            mState = State.Anticipation;
         }
 
         protected virtual void Anticipation()
@@ -123,6 +137,7 @@ namespace Behaviours.Attacks
         {
             anticipationComplete.RemoveAllListeners();
             actionComplete.RemoveAllListeners();
+            recoveryComplete.RemoveAllListeners();
         }
     }
 }
