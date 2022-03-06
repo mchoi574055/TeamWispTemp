@@ -13,18 +13,65 @@ public static class Settings
      * Or subscribe to event callback with
      * Settings.onTextDelayChanged.AddListener(YourFunc) in Awake() 
      */
-    public static UnityEvent<float> onVolumeChanged = new UnityEvent<float>();
-    public static float VOLUME
+
+    public static int text_speed
     {
         get
         {
-            return PlayerPrefs.GetFloat("VOLUME", 1.0f);
+            return PlayerPrefs.GetInt("TEXT_SPEED", 1);
         }
         set
         {
-            PlayerPrefs.SetFloat("VOLUME", value);
+            PlayerPrefs.SetInt("TEXT_SPEED", value);
             PlayerPrefs.Save();
-            onVolumeChanged.Invoke(value);
+        }
+    }
+    public static int text_size
+    {
+        get
+        {
+            return PlayerPrefs.GetInt("TEXT_SIZE", 1);
+        }
+        set
+        {
+            PlayerPrefs.SetInt("TEXT_SIZE", value);
+            PlayerPrefs.Save();
+        }
+    }
+    public static float master_volume
+    {
+        get
+        {
+            return PlayerPrefs.GetFloat("MASTER_VOLUME", 1.0f);
+        }
+        set
+        {
+            PlayerPrefs.SetFloat("MASTER_VOLUME", value);
+            PlayerPrefs.Save();
+        }
+    }
+    public static float music_volume
+    {
+        get
+        {
+            return PlayerPrefs.GetFloat("MUSIC_VOLUME", 1.0f);
+        }
+        set
+        {
+            PlayerPrefs.SetFloat("MUSIC_VOLUME", value);
+            PlayerPrefs.Save();
+        }
+    }
+    public static float sfx_volume
+    {
+        get
+        {
+            return PlayerPrefs.GetFloat("SFX_VOLUME", 1.0f);
+        }
+        set
+        {
+            PlayerPrefs.SetFloat("SFX_VOLUME", value);
+            PlayerPrefs.Save();
         }
     }
     public static int isFullScreen
@@ -61,7 +108,6 @@ public static class Settings
         {
             PlayerPrefs.SetFloat("BRIGHTNESS", value);
             PlayerPrefs.Save();
-            onVolumeChanged.Invoke(value);
         }
     }
 

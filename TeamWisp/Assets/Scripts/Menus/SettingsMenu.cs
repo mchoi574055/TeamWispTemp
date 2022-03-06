@@ -6,16 +6,24 @@ using UnityEngine.UI;
 public class SettingsMenu : MonoBehaviour
 {
     // Start is called before the first frame update
-    [SerializeField] Slider volSlider;
+    [SerializeField] Slider masterVolSlider;
+    [SerializeField] Slider musicVolSlider;
+    [SerializeField] Slider sfxVolSlider;
     [SerializeField] Toggle fullScreenToggle;
-    [SerializeField] Dropdown resDropDown;
+    [SerializeField] TMPro.TMP_Dropdown resDropDown;
     [SerializeField] Slider brightnessSlider;
+    [SerializeField] TMPro.TMP_Dropdown textSpeedDropDown;
+    [SerializeField] TMPro.TMP_Dropdown textSizeDropDown;
 
-    public int[,] indexToResolution = { { 1280, 720 }, { 1920, 1080 }, { 2560, 1440 } };
+
+    static public int[,] indexToResolution = { { 1920, 1080 }, { 2560, 1440 }, { 7680, 4320 } };
+    static public float[] indexToTextSpeed = { 0.001f, 0.025f, 0.05f };
+    static public float[] indexToTextSize = { 1, 5, 10 };
+
+    
 
     void Start()
     {
-        
         loadSettings();
     }
 
@@ -26,11 +34,29 @@ public class SettingsMenu : MonoBehaviour
     }
 
 
-
-    public void setVolume(System.Single vol)
+    public void setMasterVolume(System.Single vol)
     {
         // set game volume https://alessandrofama.com/tutorials/fmod/unity/mixer
-        Settings.VOLUME = (float)vol;
+        Settings.master_volume = (float)vol;
+        FMOD.Studio.VCA vca;
+        vca = FMODUnity.RuntimeManager.GetVCA("vca:/Master");
+        vca.setVolume(Mathf.Pow(10.0f, vol / 20f));   // scale volume linearly
+    }
+
+    public void setMusicVolume(System.Single vol)
+    {
+        Settings.music_volume = (float)vol;
+        FMOD.Studio.VCA vca;
+        vca = FMODUnity.RuntimeManager.GetVCA("vca:/Music");
+        vca.setVolume(Mathf.Pow(10.0f, vol / 20f));   
+    }
+
+    public void setSFXVolume(System.Single vol)
+    {
+        Settings.sfx_volume = (float)vol;
+        FMOD.Studio.VCA vca;
+        vca = FMODUnity.RuntimeManager.GetVCA("vca:/SFX");
+        vca.setVolume(Mathf.Pow(10.0f, vol / 20f));
     }
 
     public void setResolution(int resolution)
@@ -52,18 +78,43 @@ public class SettingsMenu : MonoBehaviour
         Screen.brightness = (float)bright;
     }
 
+    public void setTextSpeed(int speed)
+    {
+        Settings.text_speed = speed;
+        // set ingame properties here
+    }
+
+    public void setTextSize(int size)
+    {
+        Settings.text_size = size;
+        // set ingame properties here
+    }
+
+
     public void loadSettings()
     {
+        
+        // so that the functions ONLY run at startup
+        masterVolSlider.onValueChanged.AddListener( vol => setMasterVolume(vol) );
+        musicVolSlider.onValueChanged.AddListener(vol => setMusicVolume(vol));
+        sfxVolSlider.onValueChanged.AddListener(vol => setSFXVolume(vol));
+        fullScreenToggle.onValueChanged.AddListener( isOn => setFullScreen(isOn) );
+        resDropDown.onValueChanged.AddListener(val => setResolution(val) );
+        brightnessSlider.onValueChanged.AddListener(delegate { setBrightness(brightnessSlider.value); });
+        textSizeDropDown.onValueChanged.AddListener(val => setTextSize(val));
+        textSpeedDropDown.onValueChanged.AddListener(val => setTextSpeed(val));
+
         // set values in settings menu
-        volSlider.value = Settings.VOLUME;
+        masterVolSlider.value = Settings.master_volume;
+        musicVolSlider.value = Settings.music_volume;
+        sfxVolSlider.value = Settings.sfx_volume;
         fullScreenToggle.isOn = Settings.isFullScreen == 1;
         resDropDown.value = Settings.resolution;
         brightnessSlider.value = Settings.brightness;
+        textSizeDropDown.value = Settings.text_size;
+        textSpeedDropDown.value = Settings.text_speed;
 
-        // change actual settings
-        Screen.fullScreen = Settings.isFullScreen == 1;
-        Screen.SetResolution(indexToResolution[Settings.resolution, 0], indexToResolution[Settings.resolution, 1], Settings.isFullScreen == 1);
-        Screen.brightness = Settings.brightness;
+
     }
 
 }
